@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "babylonjs": "^4.2.0",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
