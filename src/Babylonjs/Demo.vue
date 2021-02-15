@@ -10,9 +10,10 @@ import {
   Engine, 
   Scene, 
   FreeCamera,
+  ArcRotateCamera,
   Vector3,
   HemisphericLight,
-  Mesh,
+  Mesh,  
 } from 'babylonjs'
 import cssExample from '../css/example.module.css'
 
@@ -25,7 +26,9 @@ export default defineComponent({
       let engine = new Engine(canvas, true, {preserveDrawingBuffer:true, stencil:true});
       let createScene = function() {
         let scene = new Scene(engine);
-        let camera = new FreeCamera('camera1', new Vector3(0,5,-10), scene);
+        let camera = 
+          // new FreeCamera('camera1', new Vector3(0,5,-10), scene);
+          new ArcRotateCamera('camera2', Math.PI/2, Math.PI/2.5, 150, new Vector3(0, 60, 0), scene);
         camera.setTarget(Vector3.Zero());
         camera.attachControl(canvas, false);
 
@@ -33,6 +36,7 @@ export default defineComponent({
         let sphere = Mesh.CreateSphere('sphere1', 16, 2, scene, false, Mesh.FRONTSIDE);
         sphere.position.y = 1;
         let ground = Mesh.CreateGround('ground1', 6, 6, 2, scene, false);
+
         return scene;
       }
       let scene = createScene();
@@ -64,7 +68,7 @@ export default defineComponent({
 
     })
     return {
-      
+
     }
   }
 })

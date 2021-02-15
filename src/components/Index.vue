@@ -1,9 +1,11 @@
 <template>
   <div>
     <img alt="Vue logo" src="../assets/logo.png" />
-      <p>Babylon JS library </p>
-      <p><router-link to="/babylonjs/demo">demo first</router-link></p>
+      <p>Vite Vue3 Demo </p>
+      <p><router-link to="/babylonjs">babylon js library </router-link></p>
       <p><router-link to="/helloworld">hello world</router-link></p>
+      <p><router-link to="/imgui">the Immediate mode GUI -- imgui</router-link></p>
+      <p><router-link to="/jsx">Jsx style components</router-link></p>
   </div>
 </template>
 

@@ -11,7 +11,8 @@
     "lib": ["esnext", "dom"],
     "types": [
       "vite/client",
-      "babylonjs"
+      "babylonjs",
+      "@thi.ng"
     ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

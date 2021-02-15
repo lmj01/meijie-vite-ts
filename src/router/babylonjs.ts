@@ -8,6 +8,11 @@ const babylonPath = [
         path:'/babylonjs/demo',
         name: 'babylonjs.demo',
         component: ()=>import('../Babylonjs/Demo.vue')
+    },
+    {
+        path:'/babylonjs/first',
+        name: 'babylonjs.first',
+        component: ()=>import('../Babylonjs/First.vue')
     }
 ]
 export default babylonPath;
