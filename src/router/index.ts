@@ -12,6 +12,16 @@ let routes = [
         component: ()=>import('../components/HelloWorld.vue')
     },
     {
+        path:'/drag',
+        name: 'Drag',
+        component: ()=>import('../components/Drag.vue')
+    },
+    {
+        path:'/trackball',
+        name: 'Trackball',
+        component: ()=>import('../components/Trackball.vue')
+    },
+    {
         path:'/imgui',
         name: 'imgui',
         component: ()=>import('../components/ImGui.vue')
