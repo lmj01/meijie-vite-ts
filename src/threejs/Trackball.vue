@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div class="threejs-trackball">
+    <canvas id="idcanvas" width="800" height="600"></canvas>
+  </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted } from 'vue'
+import { ref, defineComponent, onMounted, reactive } from 'vue'
 import {
   Vector2,
   Vector3,
@@ -530,14 +532,14 @@ export default defineComponent({
     /**
     * Scene
     **/
-
+    const app = reactive({
+      renderer: null,
+      controls: null,
+      canvas: null,
+    })
     var scene = new Scene();
     var camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 50;
-    var renderer = new WebGLRenderer({antialias: true});
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
-    var controls = new TrackballControls(camera, document.body);
     // geom    
     const vertices = [];
     for (var i=0; i<500; i++) {
@@ -553,17 +555,40 @@ export default defineComponent({
     // main
     function animate() {
       requestAnimationFrame( animate );
-      renderer.render( scene, camera );
-      controls.update();
+      app.renderer.render( scene, camera );
+      app.controls.update();
     }
     // animate();
     onMounted(()=>{
+      app.canvas = document.getElementById('idcanvas');
+      let elParent = app.canvas.parentNode;
+      let style = getComputedStyle(elParent);
+      let width = parseInt(style.width);
+      let height = parseInt(style.height);
+      app.canvas.width = width;
+      app.canvas.height = height;
+      app.renderer = new WebGLRenderer({
+        antialias: true,
+        canvas: document.getElementById('idcanvas')
+      });
+      app.renderer.setSize( width, height );
+      app.controls = new TrackballControls(camera, app.renderer.domElement);
+
       animate();
     })
-    return { }
+    return { 
+      app,
+    }
   }
 })
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
+.threejs-trackball {
+  width: 100%;
+  height: 100%;
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

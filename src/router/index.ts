@@ -1,5 +1,5 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import babylonPath from './babylonjs';
+import { createRouter, createWebHashHistory, createWebHistory, routerKey } from 'vue-router'
+import Layout1 from '../components/layout1/index.vue';
 let routes = [
     {
         path:'/',
@@ -12,29 +12,127 @@ let routes = [
         component: ()=>import('../components/HelloWorld.vue')
     },
     {
-        path:'/drag',
-        name: 'Drag',
-        component: ()=>import('../components/Drag.vue')
-    },
-    {
-        path:'/trackball',
-        name: 'Trackball',
-        component: ()=>import('../components/Trackball.vue')
-    },
-    {
         path:'/imgui',
         name: 'imgui',
         component: ()=>import('../components/ImGui.vue')
     },
-    {
-        path:'/jsx',
-        name: 'jsx.index',
-        component: ()=>import('../Jsx/Index.Vue')
-    }
 ];
-routes = routes.concat(babylonPath);
 
-export default createRouter({
+export const routerMap = [    
+    {
+        path: '/threejs',
+        redirect: '/threejs/trackball',
+        component: Layout1,
+        meta: { id: 100 },
+        name: 'threejs',
+        children: [
+            {
+                path: 'trackball',
+                name: 'threejs-trackball',
+                component: ()=>import('../threejs/Trackball.vue'),
+                meta: { id: 101 },
+            },
+            {
+                path: 'sprite',
+                name: 'threejs-sprite',
+                component: ()=>import('../threejs/Sprite.vue'),
+                meta: { id: 102 },
+            },
+        ],
+    },
+    {
+        path: '/babylonjs',
+        component: Layout1,
+        meta: { id: 200 },
+        name: 'babylonjs',
+        children: [
+            {
+                path: 'first',
+                name: 'babylonjs-first',
+                component: ()=>import('../Babylonjs/First.vue'),
+                meta: { id: 201 },
+            },
+            {
+                path: 'demo',
+                name: 'babylonjs-demo',
+                component: ()=>import('../Babylonjs/Demo.vue'),
+                meta: { id: 202 },
+            },
+        ],
+    },
+    {
+        path: '/html5',
+        component: Layout1,
+        meta: { id: 300 },
+        name: 'html5',
+        children: [
+            {
+                path: 'drag',
+                name: 'html5-drag',
+                component: ()=>import('../html5/Drag.vue'),
+                meta: { id: 301 },
+            },
+            {
+                path: 'shadow',
+                name: 'html5-shadow',
+                component: ()=>import('../html5/Shadow.vue'),
+                meta: { id: 302 },
+            },
+        ],
+    },
+]
+
+const router = createRouter({
     history: createWebHistory(),
     routes: routes
 })
+
+const menuTreeData = [
+    {
+        name:'ThreeJS', id:100, children:[
+            {name: 'trackball', id:101, children: [] }, 
+            {name: 'sprite', id:102, children: [] },
+        ]
+    },
+    {
+        name:'BabylonJS', id:200, children:[
+            {name: 'first', id:201, children: [] }, 
+            {name: 'demo', id:202, children: [] },
+        ]
+    },
+    {
+        name:'Html5', id:300, children:[
+            {name: 'drag', id:301, children: [] }, 
+            {name: 'shadow', id:302, children: [] },
+        ]
+    }
+]
+function visitChild(treeList : any, mapList: any) {
+    treeList.forEach((item : any)=>{
+        for (let i=0; i<mapList.length; i++) {
+            if(item.id==mapList[i].meta.id) {
+                mapList[i].meta.name = item.name;
+                if (item.children.length > 0) {
+                    visitChild(item.children, mapList[i].children);
+                }
+            }
+        }
+    })
+}
+
+(<any>window).mjrouter = router
+
+menuTreeData.forEach(item=>{
+    for (let i=0; i<routerMap.length; i++) {
+        if (item.id==routerMap[i].meta.id) {
+            if (item.children.length > 0) {
+                visitChild(item.children, routerMap[i].children)
+            }
+            router.options.routes.push(routerMap[i]);
+            router.addRoute(routerMap[i])
+            break;
+        }
+    }
+})
+
+export default router;

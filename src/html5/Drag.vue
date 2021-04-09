@@ -69,7 +69,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .test-drag {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 
   .drag-area {
     background-color: lightblue;
