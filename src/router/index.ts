@@ -1,20 +1,20 @@
 import { createRouter, createWebHashHistory, createWebHistory, routerKey } from 'vue-router'
-import Layout1 from '../components/layout1/index.vue';
+import Layout1 from '@/components/layout1/index.vue';
 let routes = [
     {
         path:'/',
         name: 'index',
-        component: ()=>import('../components/Index.vue')
+        component: ()=>import('@/components/Index.vue')
     },
     {
         path:'/helloworld',
         name: 'helloworld',
-        component: ()=>import('../components/HelloWorld.vue')
+        component: ()=>import('@/components/HelloWorld.vue')
     },
     {
         path:'/imgui',
         name: 'imgui',
-        component: ()=>import('../components/ImGui.vue')
+        component: ()=>import('@/components/ImGui.vue')
     },
 ];
 
@@ -29,13 +29,13 @@ export const routerMap = [
             {
                 path: 'trackball',
                 name: 'threejs-trackball',
-                component: ()=>import('../threejs/Trackball.vue'),
+                component: ()=>import('@/components/threejs/Trackball.vue'),
                 meta: { id: 101 },
             },
             {
                 path: 'sprite',
                 name: 'threejs-sprite',
-                component: ()=>import('../threejs/Sprite.vue'),
+                component: ()=>import('@/components/threejs/Sprite.vue'),
                 meta: { id: 102 },
             },
         ],
@@ -49,13 +49,13 @@ export const routerMap = [
             {
                 path: 'first',
                 name: 'babylonjs-first',
-                component: ()=>import('../Babylonjs/First.vue'),
+                component: ()=>import('@/components/Babylonjs/First.vue'),
                 meta: { id: 201 },
             },
             {
                 path: 'demo',
                 name: 'babylonjs-demo',
-                component: ()=>import('../Babylonjs/Demo.vue'),
+                component: ()=>import('@/components/Babylonjs/Demo.vue'),
                 meta: { id: 202 },
             },
         ],
@@ -69,13 +69,13 @@ export const routerMap = [
             {
                 path: 'drag',
                 name: 'html5-drag',
-                component: ()=>import('../html5/Drag.vue'),
+                component: ()=>import('@/components/html5/Drag.vue'),
                 meta: { id: 301 },
             },
             {
                 path: 'shadow',
                 name: 'html5-shadow',
-                component: ()=>import('../html5/Shadow.vue'),
+                component: ()=>import('@/components/html5/Shadow.vue'),
                 meta: { id: 302 },
             },
         ],

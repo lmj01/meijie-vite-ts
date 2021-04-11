@@ -77,6 +77,43 @@ export default {
             }
         })
 
+        app.directive('resizev', {
+            mounted(el, binding, vnode, oldVnode) {
+                console.log(binding.arg);
+                const minPaneSize = 150;
+                const maxPaneSize = document.body.clientHeight * 0.8;
+                let elEldest = el.previousElementSibling;
+                let elYounger = el.nextElementSibling;
+                const setPaneHeight = (height) => {
+                    elEldest.style.setProperty('--resizeable-height', `${height}px`);
+                    elYounger.style.setProperty('--resizeable-height', `${height}px`);
+                    vnode.el.click()
+                }
+                const getPaneHeight = () => {
+                    const pxHeight = getComputedStyle(elEldest).getPropertyValue('--resizeable-height');
+                    return parseInt(pxHeight, 10);
+                }
+                const startDragging = (event) => {
+                    event.preventDefault();
+                    const startingPaneWidth = getPaneHeight();
+                    const yOffset = event.pageY;
+                    const mouseDragHandle = (moveEvent) => {
+                        moveEvent.preventDefault();
+                        const primaryButtonPressed = moveEvent.buttons === 1;
+                        if (!primaryButtonPressed) {
+                            setPaneHeight(Math.min(Math.max(getPaneHeight(), minPaneSize), maxPaneSize));
+                            document.body.removeEventListener('pointermove', mouseDragHandle);
+                            return;
+                        }
+                        const paneOriginAdjustment = binding.arg === 'up' ? -1 : 1;
+                        setPaneHeight((yOffset - moveEvent.pageY) * paneOriginAdjustment + startingPaneWidth);                        
+                    };
+                    document.body.addEventListener('pointermove', mouseDragHandle);
+                }
+                el.addEventListener('mousedown', startDragging);
+            }
+        })
+
         app.mixin({
             created() {
                 // some login
