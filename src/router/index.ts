@@ -38,6 +38,12 @@ export const routerMap = [
                 component: ()=>import('@/components/threejs/Sprite.vue'),
                 meta: { id: 102 },
             },
+            {
+                path: 'sideview',
+                name: 'threejs-Side-view',
+                component: ()=>import('@/components/threejs/SideView.vue'),
+                meta: { id: 103 },
+            },
         ],
     },
     {
@@ -78,6 +84,12 @@ export const routerMap = [
                 component: ()=>import('@/components/html5/Shadow.vue'),
                 meta: { id: 302 },
             },
+            {
+                path: 'primary',
+                name: 'html5-primary',
+                component: ()=>import('@/components/html5/Primary.vue'),
+                meta: { id: 303 },
+            },
         ],
     },
 ]
@@ -92,6 +104,7 @@ const menuTreeData = [
         name:'ThreeJS', id:100, children:[
             {name: 'trackball', id:101, children: [] }, 
             {name: 'sprite', id:102, children: [] },
+            {name: 'SideView', id:103, children: [] },
         ]
     },
     {
@@ -102,8 +115,9 @@ const menuTreeData = [
     },
     {
         name:'Html5', id:300, children:[
-            {name: 'drag', id:301, children: [] }, 
-            {name: 'shadow', id:302, children: [] },
+            {name: '拖拉效果', id:301, children: [] }, 
+            {name: '阴影', id:302, children: [] },
+            {name: '基本控件', id:303, children: [] },
         ]
     }
 ]

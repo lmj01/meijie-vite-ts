@@ -37,24 +37,39 @@ export default {
                 const maxPaneSize = document.body.clientWidth * 0.8;
                 let elParent = el.parentNode;
                 let elUncle = elParent.nextElementSibling;
-                // elParent.style.setProperty('--max-width', `${maxPaneSize}px`);
-                // elParent.style.setProperty('--min-width', `${minPaneSize}px`);
+                let elGrandFather = elParent.parentNode;
                 const setPaneWidth = (width) => {
                     elParent.style.setProperty('--resizeable-width', `${width}px`);
                     elUncle.style.setProperty('--resizeable-width', `${width}px`);
-                    // if (binding.arg == 'fResize') {
-                        // console.log(binding.arg, vnode);
-                        vnode.el.click()
-                        // binding.arg()
-                        // vnode.context.$emit('click');
-                    // }
+                    vnode.el.click()
+                }
+                const setPaneWidth2 = (width) => {
+                    elParent.style.setProperty('--resizeable-width', `${width}%`);
+                    elUncle.style.setProperty('--resizeable-width', `${width}%`);
+                    vnode.el.click()
+                }
+                const toNumber = (str) => {
+                    return parseInt(str, 10);
                 }
                 const getPaneWidth = () => {
                     const pxWidth = getComputedStyle(elParent).getPropertyValue('--resizeable-width');
                     return parseInt(pxWidth, 10);
                 }
+                const getPaneWidth2 = () => {
+                    let style1 = getComputedStyle(elGrandFather);
+                    let style2 = getComputedStyle(elParent);
+                    let w1 = toNumber(style1.width);
+                    let w2 = toNumber(style2.width);
+                    let res = parseInt(w2 / w1 * 100)
+                    console.log('--pane', w1, w2, res);
+                    return {
+                        widthTotal: w1,
+                        width: w2,
+                        per: res,
+                    }
+                }
                 const startDragging = (event) => {
-                    // console.log('start draging--');
+                    console.log('start draging--', event);
                     event.preventDefault();
                     const startingPaneWidth = getPaneWidth();
                     const xOffset = event.pageX;
@@ -63,6 +78,7 @@ export default {
                         const primaryButtonPressed = moveEvent.buttons === 1;
                         if (!primaryButtonPressed) {
                             setPaneWidth(Math.min(Math.max(getPaneWidth(), minPaneSize), maxPaneSize));
+                            // setPaneWidth2(getPaneWidth2());
                             document.body.removeEventListener('pointermove', mouseDragHandle);
                             return;
                         }
@@ -70,6 +86,8 @@ export default {
                         const paneOriginAdjustment = binding.arg === 'right' ? 1 : -1;
                         // console.log('--', paneOriginAdjustment);
                         setPaneWidth((xOffset - moveEvent.pageX) * paneOriginAdjustment + startingPaneWidth);                        
+                        // let varWidth = (xOffset - moveEvent.pageX) * paneOriginAdjustment;                        
+                        // setPaneWidth2(parseInt((startingPaneWidth.width + varWidth) / startingPaneWidth.widthTotal * 100))
                     };
                     document.body.addEventListener('pointermove', mouseDragHandle);
                 }

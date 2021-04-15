@@ -24,7 +24,7 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 export default defineComponent({
-  name: 'Shadow',
+  name: 'Html5.Shadow',
   setup: () => {    
     
     return { 

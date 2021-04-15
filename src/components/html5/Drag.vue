@@ -44,7 +44,7 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
 export default defineComponent({
-  name: 'Drag',
+  name: 'Html5.Drag',
   setup: () => {    
     const fResize = () => {
       // console.log('bind function resize');
@@ -156,7 +156,7 @@ $height-descripe: 50px;
         position: relative;
         height: calc(100% - 50px);
         .resizeable {
-          --resizeable-width: 300px;
+          --resizeable-width: 10%;
           height: 100%;
           width: var(--resizeable-width);
           // min-width: var(--min-width);
@@ -164,7 +164,7 @@ $height-descripe: 50px;
           background-color: grey;
         }
         .rest-area {
-          --resizeable-width: 300px;
+          --resizeable-width: 10%;
           width: calc(100% - var(--resizeable-width));
           height: 100%;
           position: absolute;

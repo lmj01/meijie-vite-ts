@@ -25,4 +25,9 @@ body {
   text-align: center;
   color: #2c3e50;
 }
+.dg.main#idGui {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 </style>
