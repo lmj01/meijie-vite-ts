@@ -35,6 +35,8 @@ export default defineComponent({
     .onChange((val)=>{
       engine.setSideView(val);
     })
+    // 测试数据
+    // http://masteralign.cn/editor?uuid=0c9a4c2a7bfa4e339dfbce6864708192    
     const midFaceNormal = [1, 0, 0];
     const occlusionNormal = [0, 0.9991733, 0.040653728];
     const modelLoader = new ModelLoader(ExtType.DRC);

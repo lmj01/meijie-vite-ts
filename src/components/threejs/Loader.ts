@@ -7,13 +7,17 @@ import { MeshStandardMaterial, DoubleSide, Mesh, BufferGeometry } from 'three';
 export interface LoadOption {
     color?: number,
 }
+// 参考文档
+// https://sbcode.net/threejs/loaders-draco/
 export class ModelLoader {
-    loader: DRACOLoader | any
+    loader: DRACOLoader
     constructor(ext: ExtType) {
         if (ext == ExtType.DRC) {
             this.loader = new DRACOLoader();
             this.loader.setDecoderPath('/libs/draco/');
             this.loader.setDecoderConfig({type: 'js'});
+        } else {
+            throw 'unkown ext file type'
         }
     }
     load(url: string, opt: LoadOption) {
