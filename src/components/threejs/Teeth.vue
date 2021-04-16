@@ -21,6 +21,8 @@ import {
   Object3D,
   MeshBasicMaterial,
   Color,
+  AmbientLight,
+  DirectionalLight
 } from 'three'
 
 export default defineComponent({
@@ -112,9 +114,16 @@ export default defineComponent({
     }
     const lightCreate = () => {
       // light
-      var light = new PointLight( 0xffffff, .7, 0 );
-      light.position.set(1, 1, 100 );
-      engine.addObject(light, true);    
+      var pointLight = new PointLight( 0xffffff, .7, 0 );
+      pointLight.position.set(1, 100, 100 );      
+      pointLight.intensity = 2.4;
+      engine.addObject(pointLight, true); 
+      // ambient light
+      const ambientLight = new AmbientLight(0x404040);
+      engine.addObject(ambientLight, true);   
+      // direction 
+      const directionalLight = new DirectionalLight(0xffffff, 0.8);
+      engine.addObject(directionalLight, true);
     }
     onMounted(()=>{
       let canvas = document.getElementById('idcanvas')

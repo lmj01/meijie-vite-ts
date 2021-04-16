@@ -1,10 +1,14 @@
 export enum ExtType {
     DRC = '.drc'
 }
-import * as THREE from 'three'
 import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader'
-import { MeshStandardMaterial, DoubleSide, Mesh, BufferGeometry } from 'three';
-import { Color3 } from 'babylonjs';
+import { 
+    MeshStandardMaterial,
+    DoubleSide,
+    Mesh,
+    BufferGeometry,
+    Float32BufferAttribute
+} from 'three';
 export interface LoadOption {
     color?: number,
 }
@@ -25,7 +29,18 @@ export class ModelLoader {
         const {loader} = this;
         return new Promise((resolve)=>{
             return loader.load(url, (geo:BufferGeometry)=>{
-                const material = new MeshStandardMaterial({side: DoubleSide, color: new Color3(0xff0000), vertexColors: true});
+                const material = new MeshStandardMaterial({
+                    // side: DoubleSide, 
+                    color: 0x727d82, 
+                    // vertexColors: true,
+                });
+                let colors = [];
+                for (let i=0; i<geo.attributes.position.count;i++) {
+                    colors.push(255* 1.0)
+                    colors.push(125 * 1.0)
+                    colors.push(1.0)
+                }
+                geo.setAttribute('color', new Float32BufferAttribute(colors, 3))
                 const mesh = new Mesh(geo, material);
                 mesh.userData.url = url;
                 mesh.name = 'load-mesh';

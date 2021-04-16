@@ -30,3 +30,7 @@ Uncaught (in promise) TypeError: 'get' on proxy: property 'modelViewMatrix' is a
 ## 术语
 
 - HMR(Hot Module Replacement)模块热替换
+
+## 问题集
+
+1. 使用新工具时，很多问题需要版本的更新，特别是核心库的版本问题要一致
