@@ -18,6 +18,7 @@ import {
   PointLight,
   BoxGeometry,
   Mesh,
+  Object3D,
   MeshBasicMaterial,
   Color,
 } from 'three'
@@ -32,7 +33,7 @@ export default defineComponent({
       side: 'front',
     }
     gui.add(guiOptions, 'side', ['front', 'back', 'left', 'right', 'top', 'bottom'])
-    .onChange((val)=>{
+    .onChange((val:string)=>{
       engine.setSideView(val);
     })
     // 测试数据
@@ -45,13 +46,51 @@ export default defineComponent({
     }
 
     const loadDrcFiles = () => {
-      const files = ['/models/A011SU/0_lower.drc'];
-      modelLoader.load(files[0], loadOptions);
-      // const allPromise = [];
-      // files.forEach(e=>allPromise.push(modelLoader.load(e, loadOptions)))
-      // Promise.all(allPromise).then((values)=>{
-      //   console.log(values);
-      // })
+      const files = [
+        '/models/A011SU/0_lower.drc',
+        '/models/A011SU/0_upper.drc',
+        '/models/A011SU/18.drc',
+        '/models/A011SU/17.drc',
+        '/models/A011SU/16.drc',
+        '/models/A011SU/15.drc',
+        '/models/A011SU/14.drc',
+        '/models/A011SU/13.drc',
+        '/models/A011SU/12.drc',
+        '/models/A011SU/11.drc',
+        '/models/A011SU/21.drc',
+        '/models/A011SU/22.drc',
+        '/models/A011SU/23.drc',
+        '/models/A011SU/24.drc',
+        '/models/A011SU/25.drc',
+        '/models/A011SU/26.drc',
+        '/models/A011SU/27.drc',
+        '/models/A011SU/28.drc',
+        '/models/A011SU/31.drc',
+        '/models/A011SU/32.drc',
+        '/models/A011SU/33.drc',
+        '/models/A011SU/34.drc',
+        '/models/A011SU/35.drc',
+        '/models/A011SU/36.drc',
+        '/models/A011SU/37.drc',
+        // '/models/A011SU/38.drc',
+        '/models/A011SU/41.drc',
+        '/models/A011SU/42.drc',
+        '/models/A011SU/43.drc',
+        '/models/A011SU/44.drc',
+        '/models/A011SU/45.drc',
+        '/models/A011SU/46.drc',
+        '/models/A011SU/47.drc',
+        // '/models/A011SU/48.drc',
+      ];
+      // modelLoader.load(files[0], loadOptions);
+      const allPromise: any = [];
+      files.forEach(e=>allPromise.push(modelLoader.load(e, loadOptions)))
+      Promise.all(allPromise).then((values)=>{
+        console.log(values);
+        values.forEach((mesh)=>{
+          engine.addObject((<Mesh>mesh), false);
+        })
+      })
     }
     const boxCreate = () => {
       const geo = new BoxGeometry(1, 1, 1);
@@ -79,22 +118,26 @@ export default defineComponent({
     }
     onMounted(()=>{
       let canvas = document.getElementById('idcanvas')
-      let elParent = canvas.parentElement;
-      elParent.appendChild(gui.domElement);
-      let style = getComputedStyle(elParent);
-      let width = parseInt(style.width);
-      let height = parseInt(style.height);
-      // canvas.width = width;
-      // canvas.height = height;
-      const appOptions: AppOptions = {
-        canvas: canvas,
-        width: width,
-        height: height,
-        showAxes: true,     
-        axesSize: 5,   
-      };
-      
-      engine.initial(appOptions);      
+      if (canvas) {
+        let elParent = canvas.parentElement;
+        if (elParent) {
+          elParent.appendChild(gui.domElement);
+          let style = getComputedStyle(elParent);
+          let width = parseInt(style.width);
+          let height = parseInt(style.height);
+          // canvas.width = width;
+          // canvas.height = height;
+          const appOptions: AppOptions = {
+            canvas: canvas,
+            width: width,
+            height: height,
+            showAxes: true,     
+            axesSize: 5,   
+          };
+          
+          engine.initial(appOptions);      
+        }
+      }
       engine.loop();
       lightCreate();
       boxCreate();

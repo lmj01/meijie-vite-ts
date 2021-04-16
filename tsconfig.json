@@ -8,12 +8,14 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "lib": ["esnext", "dom"],
     "types": [
       "vite/client",
       "babylonjs",
-      "@thi.ng"
+      "three",
+      "node",
+      "@thi.ng",
     ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

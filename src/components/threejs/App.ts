@@ -91,7 +91,7 @@ export class AppEngine {
         this.fitCamera();
         this.renderFrame();     
     }
-    addObject(obj3D: Object3D, isRoot: Boolean) {
+    addObject(obj3D: any, isRoot: Boolean) {
         const {scene, root} = this;
         if (isRoot) {
             scene.add(obj3D);
