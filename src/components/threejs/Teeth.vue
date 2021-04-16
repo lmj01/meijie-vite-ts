@@ -8,6 +8,7 @@
 import { ref, defineComponent, onMounted, reactive } from 'vue'
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
 import {AppOptions, AppEngine} from './App'
+import {ModelLoader, LoadOption, ExtType} from './Loader'
 import * as dat from 'dat.gui'
 import { 
   BufferGeometry,
@@ -20,6 +21,7 @@ import {
   MeshBasicMaterial,
   Color,
 } from 'three'
+
 export default defineComponent({
   name: 'SideView',
   setup: () => {
@@ -31,21 +33,23 @@ export default defineComponent({
     }
     gui.add(guiOptions, 'side', ['front', 'back', 'left', 'right', 'top', 'bottom'])
     .onChange((val)=>{
-      console.log('side', val);
       engine.setSideView(val);
     })
+    const midFaceNormal = [1, 0, 0];
+    const occlusionNormal = [0, 0.9991733, 0.040653728];
+    const modelLoader = new ModelLoader(ExtType.DRC);
+    const loadOptions: LoadOption = {
+      color: 0xff00ff,
+    }
 
-    const pointCreate = () => {
-      // geom    
-      const length = 10;
-      const offset = length / 2;
-      const vertices = [];
-      for (var i=0; i<50; i++) {
-        vertices.push(Math.random() * length - offset, Math.random() * length - offset, Math.random() * length - length);
-      }
-      const geometry = new BufferGeometry();
-      geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
-      engine.addObject(new Points(geometry, new PointsMaterial({color: 0xff0000})), false);        
+    const loadDrcFiles = () => {
+      const files = ['/models/A011SU/0_lower.drc'];
+      modelLoader.load(files[0], loadOptions);
+      // const allPromise = [];
+      // files.forEach(e=>allPromise.push(modelLoader.load(e, loadOptions)))
+      // Promise.all(allPromise).then((values)=>{
+      //   console.log(values);
+      // })
     }
     const boxCreate = () => {
       const geo = new BoxGeometry(1, 1, 1);
@@ -90,16 +94,16 @@ export default defineComponent({
       
       engine.initial(appOptions);      
       engine.loop();
-      pointCreate();
       lightCreate();
       boxCreate();
+      loadDrcFiles();
     })
     return { 
       engine,
       gui,
-      pointCreate,
       lightCreate,
       boxCreate,
+      loadDrcFiles,
     }
   }
 })

@@ -44,6 +44,12 @@ export const routerMap = [
                 component: ()=>import('@/components/threejs/SideView.vue'),
                 meta: { id: 103 },
             },
+            {
+                path: 'teeth',
+                name: 'threejs-Teeth',
+                component: ()=>import('@/components/threejs/Teeth.vue'),
+                meta: { id: 104 },
+            },
         ],
     },
     {
@@ -105,6 +111,7 @@ const menuTreeData = [
             {name: 'trackball', id:101, children: [] }, 
             {name: 'sprite', id:102, children: [] },
             {name: 'SideView', id:103, children: [] },
+            {name: 'Teeth', id:104, children: [] },
         ]
     },
     {
