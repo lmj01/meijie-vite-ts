@@ -5,6 +5,7 @@
       <p><router-link to="/helloworld">hello world</router-link></p>
       <p><router-link to="/threejs">layout 1 相同布局的内容</router-link></p>
       <p><router-link to="/imgui">the Immediate mode GUI -- imgui</router-link></p>
+      <p><router-link to="/html/ficusjs/index.html">web component -- ficus js library</router-link></p>
   </div>
 </template>
 
