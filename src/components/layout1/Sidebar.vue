@@ -12,14 +12,15 @@
 import {computed} from 'vue'
 import {useRouter} from 'vue-router'
 import Menus from './Menus.vue'
+import {filterPath} from '@/router'
 export default {
     name: 'Sidebar',
     components: {Menus},
     setup() {
         const router = useRouter()
+        console.log('filter path', filterPath)
         const menuData = computed(()=>{
-            const validPath = ['/threejs', '/babylonjs', '/html5']
-            return router.options.routes.filter((item)=>validPath.includes(item.path))
+            return router.options.routes.filter((item)=>filterPath.includes(item.path))
         })
         return {
             menuData,
@@ -29,8 +30,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 ul.side-bar {
-    li {
-        list-style: none;
+    padding: 0;
+    ul {
+        padding: 0;
+        text-align: left;
+        li {
+            list-style: none;
+            text-align: left;
+        }
     }
 }
 </style>

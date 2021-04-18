@@ -98,6 +98,20 @@ export const routerMap = [
             },
         ],
     },
+    {
+        path: '/service',
+        component: Layout1,
+        meta: { id: 400 },
+        name: 'service',
+        children: [
+            {
+                path: 'login',
+                name: 'service-login',
+                component: ()=>import('@/components/services/Login.vue'),
+                meta: { id: 401 },
+            },
+        ],
+    },
 ]
 
 const router = createRouter({
@@ -126,8 +140,15 @@ const menuTreeData = [
             {name: '阴影', id:302, children: [] },
             {name: '基本控件', id:303, children: [] },
         ]
+    },
+    {
+        name:'Services', id:400, children:[
+            {name: '登入/出', id:401, children: [] }, 
+        ]
     }
 ]
+export const filterPath: string[] = []
+
 function visitChild(treeList : any, mapList: any) {
     treeList.forEach((item : any)=>{
         for (let i=0; i<mapList.length; i++) {
@@ -146,6 +167,7 @@ function visitChild(treeList : any, mapList: any) {
 menuTreeData.forEach(item=>{
     for (let i=0; i<routerMap.length; i++) {
         if (item.id==routerMap[i].meta.id) {
+            filterPath.push(routerMap[i].path)
             if (item.children.length > 0) {
                 visitChild(item.children, routerMap[i].children)
             }

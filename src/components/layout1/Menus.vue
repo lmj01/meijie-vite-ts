@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <ul>
         <template v-if="node.children">
             <li @click="clickToggle">
                 {{node.name}}
@@ -16,7 +16,7 @@
                 {{node.meta.name}}
             </router-link>
         </template>
-    </li>
+    </ul>
 </template>
 <script>
 import { computed } from 'vue'
