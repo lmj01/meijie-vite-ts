@@ -1,9 +1,20 @@
 const {resolve} = require('path')
-import { defineConfig } from 'vite'
+import { defineConfig, UserConfig } from 'vite'
+import { RollupOptions } from 'rollup';
 import vue from '@vitejs/plugin-vue'
-const rootPath: String = process.cwd()
+const rootPath: string = process.cwd() || '';
 // https://vitejs.dev/config/
-export default defineConfig({
+const currentRollupOption : RollupOptions = {
+  // https://rollupjs.org/guide/en/#big-list-of-options
+  // here make the entry.js guide to html file
+  // used for multi pages
+  input: {
+    main: resolve(__dirname, 'index.html'),
+    page1: resolve(__dirname, 'page1/index.html'),
+  }
+}
+
+const currentConfig: UserConfig = {
   root: rootPath,
   esbuild: {
     jsxFactory: 'h',
@@ -12,12 +23,15 @@ export default defineConfig({
   resolve: {
     alias: [
       {find: '@', replacement: resolve(__dirname, 'src')}
-  ],
+    ],
+  },
+  optimizeDeps: {
+    include: ['axios'], // 包不会被预构建，即不使用ESM模块或类型
   },
   logLevel: 'info', // 'info' | 'warn' | 'error' | 'silent'
   server: {
     port: 3001,
-    strrictPort: false,
+    strictPort: true,
     proxy: {
       '/api': {
         target: 'localhost:3000',
@@ -28,12 +42,12 @@ export default defineConfig({
   },
   plugins: [vue()],
   build: {
+    // generate manifest.json in outDir
+    manifest: true,
     minify: false,
-    rollupOptions: {
-      // here make the entry.js guide to html file
-      // used for multi pages
-      main: resolve(__dirname, 'index.html') 
-    }
+    rollupOptions: currentRollupOption,
   }
-})
+}
+
+export default defineConfig(currentConfig)
 

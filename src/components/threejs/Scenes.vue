@@ -1,15 +1,23 @@
 <template>
-  <div class="side-view">
-    <canvas id="idcanvas" width="800" height="600"></canvas>
+  <div class="multi-scenes">
+    <div class="part-left">
+      <canvas id="canvasLeft" width="800" height="600"></canvas>
+    </div>
+    <div class="part-right">
+      <div class="upper">
+        <canvas id="canvasUpper" width="800" height="600"></canvas>
+      </div>
+      <div class="lower">
+        <canvas id="canvasLower" width="800" height="600"></canvas>
+      </div>
+    </div>    
   </div>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, onMounted, reactive } from 'vue'
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
-import {AppOptions} from './AppType'
+import {initEngineByCanvas} from './AppAuxiliary'
 import {AppEngine} from './App'
-import * as dat from 'dat.gui'
 import { 
   BufferGeometry,
   Float32BufferAttribute,
@@ -25,17 +33,9 @@ export default defineComponent({
   name: 'SideView',
   setup: () => {
     const engine = new AppEngine();
-    const gui = new dat.GUI({autoPlace: false});
-    gui.domElement.id = 'idGui';  
-    const guiOptions = {
-      side: 'front',
-    }
-    gui.add(guiOptions, 'side', ['front', 'back', 'left', 'right', 'top', 'bottom'])
-    .onChange((val)=>{
-      console.log('side', val);
-      engine.setSideView(val);
-    })
-
+    const engineUpper = new AppEngine();
+    const engineLower = new AppEngine();
+    
     const pointCreate = () => {
       // geom    
       const length = 10;
@@ -72,47 +72,82 @@ export default defineComponent({
       light.position.set(1, 1, 100 );
       engine.addObject(light, true);    
     }
+    const updateControl = () => {
+      engineUpper.control.addEventListener('change', ()=>{ 
+        engineUpper.renderFrame();
+        engineLower.camera.position.copy(engineUpper.camera.position);
+        engineLower.camera.quaternion.position.copy(engineUpper.camera.quaternion);
+        engineLower.camera.scale.copy(engineUpper.camera.scale);
+        engineLower.camera.updateMatrix();
+        engineLower.renderFrame();        
+      });
+      engineLower.control.addEventListener('change', ()=>{ 
+        engineLower.renderFrame();
+        engineUpper.camera.position.copy(engineLower.camera.position);
+        engineUpper.camera.quaternion.position.copy(engineLower.camera.quaternion);
+        engineUpper.camera.scale.copy(engineLower.camera.scale);
+        engineUpper.camera.updateMatrix();
+        engineUpper.renderFrame();        
+      });
+    }
     onMounted(()=>{
-      let canvas = document.getElementById('idcanvas')
-      let elParent = canvas.parentElement;
-      elParent.appendChild(gui.domElement);
-      let style = getComputedStyle(elParent);
-      let width = parseInt(style.width);
-      let height = parseInt(style.height);
-      // canvas.width = width;
-      // canvas.height = height;
-      const appOptions: AppOptions = {
-        canvas: canvas,
-        width: width,
-        height: height,
-        showAxes: true,     
-        axesSize: 5,   
-      };
-      
-      engine.initial(appOptions);      
-      engine.loop();
+      initEngineByCanvas('canvasLeft', engine);
+      initEngineByCanvas('canvasUpper', engineUpper);
+      initEngineByCanvas('canvasLower', engineLower);
+      updateControl();
       pointCreate();
       lightCreate();
       boxCreate();
     })
     return { 
       engine,
-      gui,
+      engineUpper,
+      engineLower,
       pointCreate,
       lightCreate,
       boxCreate,
+      updateControl,
     }
   }
 })
 </script>
 <style lang="scss" scoped>
-.side-view {
+$width-left: 40%;
+.multi-scenes {
   width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  overflow: hidden;
   canvas {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+  }
+  .part-left {
+    height: 100%;
+    width: $width-left;  
+    & > canvas {
+      border: 1px solid lightcoral;
+    } 
+  }
+  .part-right {
+    height: 100%;
+    width: calc(100% - #{$width-left});
+    .upper {
+      width: 100%;
+      height: 50%;
+      &>canvas {
+        border: 1px solid lightgreen;
+      }
+    }
+    .lower {
+      width: 100%;
+      height: 50%;
+      &>canvas {
+        border: 1px solid lightskyblue;
+      }
+    }
   }  
 }
 </style>

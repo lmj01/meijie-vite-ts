@@ -1,15 +1,19 @@
 <template>
-  <div class="side-view">
-    <canvas id="idcanvas" width="800" height="600"></canvas>
+  <div class="multi-scenes">
+    <div class="part-left">
+      <canvas id="canvasLeft" width="800" height="600"></canvas>
+    </div>
+    <div class="part-right">
+      <canvas id="canvasRight" width="800" height="600"></canvas>
+    </div>    
   </div>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, onMounted, reactive } from 'vue'
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
-import {AppOptions} from './AppType'
+import {initEngineByCanvas} from './AppAuxiliary'
 import {AppEngine} from './App'
-import * as dat from 'dat.gui'
+import {AppEngine2} from './App2'
 import { 
   BufferGeometry,
   Float32BufferAttribute,
@@ -25,17 +29,8 @@ export default defineComponent({
   name: 'SideView',
   setup: () => {
     const engine = new AppEngine();
-    const gui = new dat.GUI({autoPlace: false});
-    gui.domElement.id = 'idGui';  
-    const guiOptions = {
-      side: 'front',
-    }
-    gui.add(guiOptions, 'side', ['front', 'back', 'left', 'right', 'top', 'bottom'])
-    .onChange((val)=>{
-      console.log('side', val);
-      engine.setSideView(val);
-    })
-
+    const engine2 = new AppEngine2();
+    
     const pointCreate = () => {
       // geom    
       const length = 10;
@@ -73,31 +68,17 @@ export default defineComponent({
       engine.addObject(light, true);    
     }
     onMounted(()=>{
-      let canvas = document.getElementById('idcanvas')
-      let elParent = canvas.parentElement;
-      elParent.appendChild(gui.domElement);
-      let style = getComputedStyle(elParent);
-      let width = parseInt(style.width);
-      let height = parseInt(style.height);
-      // canvas.width = width;
-      // canvas.height = height;
-      const appOptions: AppOptions = {
-        canvas: canvas,
-        width: width,
-        height: height,
-        showAxes: true,     
-        axesSize: 5,   
-      };
-      
-      engine.initial(appOptions);      
-      engine.loop();
+      initEngineByCanvas('canvasLeft', engine);
+      initEngineByCanvas('canvasRight', engine2);
+      (<any>window).mjengine = engine;
+      (<any>window).mjengine2 = engine2;
       pointCreate();
       lightCreate();
       boxCreate();
     })
     return { 
       engine,
-      gui,
+      engine2,
       pointCreate,
       lightCreate,
       boxCreate,
@@ -106,13 +87,31 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.side-view {
+$width-left: 40%;
+.multi-scenes {
   width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  overflow: hidden;
   canvas {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+  }
+  .part-left {
+    height: 100%;
+    width: $width-left;  
+    & > canvas {
+      border: 1px solid lightcoral;
+    } 
+  }
+  .part-right {
+    height: 100%;
+    width: calc(100% - #{$width-left});    
+    & > canvas {
+      border: 1px solid lightskyblue;
+    }
   }  
 }
 </style>

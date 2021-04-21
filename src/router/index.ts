@@ -23,32 +23,62 @@ export const routerMap = [
         path: '/threejs',
         redirect: '/threejs/trackball',
         component: Layout1,
-        meta: { id: 100 },
+        meta: { id: 100, title: 'threejs' },
         name: 'threejs',
         children: [
             {
                 path: 'trackball',
                 name: 'threejs-trackball',
                 component: ()=>import('@/components/threejs/Trackball.vue'),
-                meta: { id: 101 },
+                meta: { 
+                    id: 101,
+                    title: 'trackball',
+                },
             },
             {
                 path: 'sprite',
                 name: 'threejs-sprite',
                 component: ()=>import('@/components/threejs/Sprite.vue'),
-                meta: { id: 102 },
+                meta: { 
+                    id: 102,
+                    title: 'sprite',
+                },
             },
             {
                 path: 'sideview',
                 name: 'threejs-Side-view',
                 component: ()=>import('@/components/threejs/SideView.vue'),
-                meta: { id: 103 },
+                meta: { 
+                    id: 103,
+                    title: 'side view',
+                },
             },
             {
                 path: 'teeth',
                 name: 'threejs-Teeth',
                 component: ()=>import('@/components/threejs/Teeth.vue'),
-                meta: { id: 104 },
+                meta: { 
+                    id: 104,
+                    title: 'teeth',
+                },
+            },
+            {
+                path: 'scenes',
+                name: 'threejs-multi-scenes',
+                component: ()=>import('@/components/threejs/Scenes.vue'),
+                meta: { 
+                    id: 105,
+                    title: 'multi scene',
+                },
+            },
+            {
+                path: 'scenes2',
+                name: 'threejs-multi-scenes2',
+                component: ()=>import('@/components/threejs/Scenes2.vue'),
+                meta: { 
+                    id: 106,
+                    title: 'multi scene2',
+                },
             },
         ],
     },
@@ -126,6 +156,8 @@ const menuTreeData = [
             {name: 'sprite', id:102, children: [] },
             {name: 'SideView', id:103, children: [] },
             {name: 'Teeth', id:104, children: [] },
+            {name: '多场景', id:105, children: [] },
+            {name: '多场景2', id:106, children: [] },
         ]
     },
     {
@@ -176,6 +208,14 @@ menuTreeData.forEach(item=>{
             break;
         }
     }
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.meta && to.meta.title) {
+        let title:string = <string>(to.meta.title);
+        document.title = title;
+    }
+    next();
 })
 
 export default router;

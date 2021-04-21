@@ -15,9 +15,11 @@ import {
  } from 'three'
 import {AppOptions} from './AppAuxiliary'
 
-export class AppEngine {
-    scene: Scene
-    root: Group
+export class AppEngine2 {
+    scene1: Scene
+    scene2: Scene
+    root1: Group
+    root2: Group
     camera: PerspectiveCamera | any
     renderer: WebGLRenderer | any
     control: TrackballControls | any
@@ -25,11 +27,16 @@ export class AppEngine {
     height: number
     sideView: string
     constructor() {
-        this.scene = new Scene();
-        this.scene.background = new Color(0xe9eff1);
-        this.root = new Group();
-        this.root.name = 'rootGroup';
-        this.scene.add(this.root);
+        this.scene1 = new Scene();
+        this.scene1.background = new Color(0xe9eff1);
+        this.root1 = new Group();
+        this.root1.name = 'rootGroup1';
+        this.scene1.add(this.root1);
+        this.scene2 = new Scene();
+        this.scene2.background = new Color(0xe9e0f1);
+        this.root2 = new Group();
+        this.root2.name = 'rootGroup2';
+        this.scene2.add(this.root1);
         this.camera = null;
         this.renderer = null;
         this.control = null;
@@ -56,11 +63,14 @@ export class AppEngine {
             options.canvas.appendChild(this.renderer.domElement);    
         }
         this.renderer.setClearColor(0xffffff, 0.0);
-        this.renderer.setPixelRatio(options.width / options.height);
+        // this.renderer.setPixelRatio(options.width / options.height);
+        this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize( options.width, options.height )
+        this.renderer.autoClear = false;
         
         if (options.showAxes) {
-            this.addObject(new AxesHelper(options.axesSize || 500), false);
+            this.addObject(true, new AxesHelper(options.axesSize || 500), false);
+            this.addObject(false, new AxesHelper(options.axesSize || 500), false);
         }
         this.control = new TrackballControls(this.camera, this.renderer.domElement)        
         this.control.addEventListener('change', ()=>{ 
@@ -75,7 +85,7 @@ export class AppEngine {
             self.height = parseInt(style.height || '');
             canvas.style.width = `${self.width}px`;
             canvas.style.height = `${self.height}px`;
-
+            console.log('on window resize', self.width, self.height)
             self.renderer.setSize(self.width, self.height); 
             self.fitCamera();
             self.renderFrame();
@@ -84,21 +94,32 @@ export class AppEngine {
         this.fitCamera();
         this.renderFrame();     
     }
-    addObject(obj3D: any, isRoot: Boolean) {
-        const {scene, root} = this;
+    addObject(isOne: Boolean, obj3D: any, isRoot: Boolean) {
+        const {scene1, scene2, root1, root2} = this;
         if (isRoot) {
-            scene.add(obj3D);
+            if (isOne) scene1.add(obj3D);
+            else scene2.add(obj3D);
         } else {
-            root.add(obj3D)
+            if (isOne) root1.add(obj3D)
+            else scene2.add(obj3D);
         }
         this.fitCamera();
         this.renderFrame();
         // console.log('after add', scene)
     }
     renderFrame() {
-        const {renderer, camera, scene} = this;
+        const {renderer, camera, scene1, scene2, width, height} = this;
+        
         renderer.clear();
-        renderer.render(scene, camera);
+        renderer.setScissorTest(true);
+
+        renderer.setScissor(0, 0, width, height/2);
+        renderer.render(scene1, camera);
+
+        renderer.setScissor(0, height/2, width, height/2);
+        renderer.render(scene2, camera);
+
+        renderer.setScissorTest(false);
     }
     loop() {
         const {control} = this;
@@ -110,7 +131,7 @@ export class AppEngine {
         this.renderFrame();
     }        
     getBox() {
-        const {scene} = this;
+        const {scene1, scene2} = this;
         function getBoundingBox(root: Object3D | any, bbx: Box3) {
             if (root.geometry) {
                 root.geometry.computeBoundingBox();
@@ -118,25 +139,32 @@ export class AppEngine {
                     bbx.union(root.geometry.boundingBox);
                 }
             } else if (root.type=='Object3D' || root.type=='Scene' || root.type == 'Group') {
-                root.children.forEach(e=>getBoundingBox(e, bbx));
+                root.children.forEach((e:any)=>getBoundingBox(e, bbx));
             }
         }
-        let bbx = new Box3();
+        let bbx1 = new Box3();
+        let bbx2 = new Box3();
         let size = new Vector3();
         let center = new Vector3();
-        getBoundingBox(scene, bbx);
-        bbx.getSize(size);
-        bbx.getCenter(center);
+        getBoundingBox(scene1, bbx1);
+        getBoundingBox(scene2, bbx2);
+        bbx1.union(bbx2);
+        bbx1.getSize(size);
+        bbx1.getCenter(center);
         return {size: size, center: center};
     }
     fitCamera() {
-        const {camera, root, renderer} = this;
+        const {camera, root1, root2, renderer} = this;
         const {size, center} = this.getBox();
         // console.log('bbx', size, center);
-        if (root) {
-            root.position.set(0, 0, 0);
-            root.position.add(center.multiplyScalar(-1));
-        }
+        // if (root1) {
+        //     root1.position.set(0, 0, 0);
+        //     root1.position.add(center.multiplyScalar(-1));
+        // }
+        // if (root2) {
+        //     root2.position.set(0, 0, 0);
+        //     root2.position.add(center.multiplyScalar(-1));
+        // }
         const canvas = renderer.domElement;
         const maxSide = Math.max(size.x, size.y, size.z) / 2;
         const aspect = canvas.width / canvas.height;

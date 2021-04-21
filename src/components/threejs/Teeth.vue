@@ -7,7 +7,8 @@
 <script lang="ts">
 import { ref, defineComponent, onMounted, reactive } from 'vue'
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
-import {AppOptions, AppEngine} from './App'
+import {initEngineByCanvas} from './AppAuxiliary'
+import {AppEngine} from './App'
 import {ModelLoader, LoadOption, ExtType} from './Loader'
 import * as dat from 'dat.gui'
 import { 
@@ -126,28 +127,7 @@ export default defineComponent({
       engine.addObject(directionalLight, true);
     }
     onMounted(()=>{
-      let canvas = document.getElementById('idcanvas')
-      if (canvas) {
-        let elParent = canvas.parentElement;
-        if (elParent) {
-          elParent.appendChild(gui.domElement);
-          let style = getComputedStyle(elParent);
-          let width = parseInt(style.width);
-          let height = parseInt(style.height);
-          // canvas.width = width;
-          // canvas.height = height;
-          const appOptions: AppOptions = {
-            canvas: canvas,
-            width: width,
-            height: height,
-            showAxes: true,     
-            axesSize: 5,   
-          };
-          
-          engine.initial(appOptions);      
-        }
-      }
-      engine.loop();
+      initEngineByCanvas('idcanvas', engine);
       lightCreate();
       boxCreate();
       loadDrcFiles();
