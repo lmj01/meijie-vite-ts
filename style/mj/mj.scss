@@ -6,13 +6,22 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    // background-color: lightblue;
+    background: white;
+    #app {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
 }
 .app-home {
+    width: 100%;
+    height: 100%;
     .home-head {
         display: flex;
         height: $head-height;
-        background: lightblue;
+        // background: lightblue;
         .item {
             margin: auto 20px;
         }
@@ -21,3 +30,4 @@ body {
         height: calc(100% - #{$head-height});
     }
 }
+@import './test';

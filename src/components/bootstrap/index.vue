@@ -1,8 +1,5 @@
 <template>
-    <div>
-        <p>page one 1 index</p>
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue'

@@ -1,5 +1,9 @@
 <template>
-    <div>page one test</div>
+    <div class="page-test">
+        <div id="idTest" class="frame-all">
+            <div class="test-header"></div>
+        </div>
+    </div>
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue'

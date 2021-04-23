@@ -6,6 +6,7 @@ export interface AppOptions {
     height: number,
     showAxes?: boolean | null,
     axesSize?: number | null,
+    [propName: string] : any,
 }
 
 export function initEngineByCanvas(idCanvas: string, engine: AppEngine | AppEngine2) {
