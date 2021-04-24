@@ -1,20 +1,29 @@
 <template>
   <div class="login">
     <p>测试代理逻辑</p>    
-    <div class="part-login" autocomplete="on" novalidate>
+    <div class="part-login">
       <p>登录</p>
-      <form>
-        <label for="name">用户名<input type="text" name="name" v-model="formLogin.userName"></label>          
+      <form autocomplete="on" novalidate>
+        <label for="name">用户名<input type="text" name="name" v-model="formLogin.email"></label>          
         <label for="password">密码<input type="password" name="password" v-model="formLogin.password"></label>          
-        <input type="button" @click="submitForm" value="登录">
+        <input type="button" @click="submitLogin" value="登录">
       </form>
+      <p>空action的api测试</p>
+      <button @click="submitEmpty">空数据请求</button>
     </div>
-    <div>      
+    <div class="part-register">      
       <p>注册</p>
-      <form>
-        <label for="name">用户名<input type="text" name="name" v-model="formLogin.userName"></label>          
-        <label for="password">密码<input type="password" name="password" v-model="formLogin.password"></label>          
-        <input type="button" @click="submitForm" value="登录">
+      <form autocomplete="on" novalidate>
+        <label for="name">用户名<input type="text" name="name" v-model="formRegister.nickname"></label>          
+        <label for="name">邮箱<input type="text" name="name" v-model="formRegister.email"></label>          
+        <label for="password">密码<input type="password" name="password" v-model="formRegister.password"></label>          
+        <label for="">
+          <select v-model="formRegister.language">
+            <option value="cn">中文</option>
+            <option value="en">英文</option>
+          </select>
+        </label>
+        <input type="button" @click="submitRegister" value="注册">
       </form>
     </div>
   </div>
@@ -23,27 +32,51 @@
 <script lang="ts">
 import { ref, defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
+import {register, empty} from '@/apis/login'
 export default defineComponent({
   name: 'Service.Login',
   setup: () => {  
     const store = useStore()  
     const formLogin = reactive({
-      userName: '',
+      email: '',
       password: '',  
     })
-    console.log('store-', store)
-    const submitForm = () => {
-      store.dispatch('login/login', formLogin).then(()=>{
-        alert('login success');
-      }).catch(err=>{
-        alert('login failure');
+    const formRegister = reactive({
+      nickname: '',
+      email: '',
+      password: '',
+      language: '',
+    })
+    const submitLogin = () => {
+      store.dispatch('login/login', formLogin).then((res)=>{
+        console.log('login success', res, store.getters['login/info']);        
+      })
+      .catch((err: any) => {
+        console.error('login failure', err);
       })
     }
-    const options = [ 1, 2, 3, 4, 5, 6]
+    const submitRegister = () => {
+      register(formRegister).then((res: any)=>{
+        console.log('register return', res);
+      })
+      .catch((err: any) => {
+        console.error('login failure', err);
+      })
+    }
+    const submitEmpty = () => {
+      empty().then((res: any)=>{
+        console.log('empty return ', res);
+      })
+      .catch((err: any) => {
+        console.error('empty error', err);
+      })
+    }
     return { 
-      options,
       formLogin,
-      submitForm,
+      formRegister,
+      submitLogin,
+      submitRegister,
+      submitEmpty,
     }
   }
 })
@@ -54,6 +87,13 @@ export default defineComponent({
   width: 100%;
   // height: 100%;
   .part-login {
+    width: 300px;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .part-register {
     width: 300px;
     form {
       display: flex;

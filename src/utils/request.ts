@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 const service = axios.create({
     baseURL: 'http://localhost:3000'
@@ -6,7 +7,11 @@ const service = axios.create({
 
 service.interceptors.request.use(
     (config: any) => {
-        console.log('request', config);
+        const token = store.getters['login/token'];
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        console.log('request', config, token);        
         return config
     },
     (error:any) => {
@@ -15,10 +20,9 @@ service.interceptors.request.use(
 )
 service.interceptors.response.use(
     (response: any) => {
-        const res = response.data
-        if (res.code === 200) return res 
+        if (response.status === 200) return response.data
         else {
-            return Promise.reject(res)
+            return Promise.reject(response)
         }
     },
     (error:any) => {

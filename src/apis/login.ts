@@ -15,3 +15,11 @@ export function register(data: Object) {
         data: data,
     })
 }
+
+export function empty(data: Object) {
+    return request({
+        url: 'api/v1/empty',
+        method: 'POST',
+        data: data,
+    })
+}
