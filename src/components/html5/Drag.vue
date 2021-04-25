@@ -49,6 +49,7 @@ export default defineComponent({
     const fResize = () => {
       // console.log('bind function resize');
     }
+    console.log('meta env', import.meta.env.VITE_APP_TEST)
     const clickHideResizeArea = (id) => {
       let el = document.getElementById(id);
       let child = el.children[0];

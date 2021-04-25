@@ -18,7 +18,6 @@ export default {
     components: {Menus},
     setup() {
         const router = useRouter()
-        console.log('filter path', filterPath)
         const menuData = computed(()=>{
             return router.options.routes.filter((item)=>filterPath.includes(item.path))
         })
