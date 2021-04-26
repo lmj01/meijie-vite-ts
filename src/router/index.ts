@@ -142,6 +142,20 @@ export const routerMap = [
             },
         ],
     },
+    {
+        path: '/designpattern',
+        component: Layout1,
+        meta: { id: 500 },
+        name: 'design-pattern',
+        children: [
+            {
+                path: 'factory',
+                name: 'abstract-factory',
+                component: ()=>import('@/components/designpattern/Index.vue'),
+                meta: { id: 501 },
+            },
+        ],
+    },
 ]
 
 const router = createRouter({
@@ -176,6 +190,11 @@ const menuTreeData = [
     {
         name:'Services', id:400, children:[
             {name: '登入/出', id:401, children: [] }, 
+        ]
+    },
+    {
+        name:'designpasstern', id:500, children:[
+            {name: '抽象工厂', id:501, children: [] }, 
         ]
     }
 ]
