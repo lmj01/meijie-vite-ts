@@ -7,8 +7,8 @@
           <!-- 这是唯一看到的一个实现效果，原理还不太清楚 -->
           <!-- See a single select tag cannot be styled as the control goes to system. Here what is done is on click, the select gets changed to multiple select using size. There is no restriction on multiple select, so the style works. Brilliant -->
           <select onfocus="this.size=10;" onblur="this.size=0;" onchange="this.size=1;this.blur();">
-              <option v-for="item in options" :key="item">
-                  {{item}}
+              <option v-for="it in 6" :key="it">
+                  {{it}}
               </option>
           </select>
       </div>
@@ -107,18 +107,126 @@
           </div><!-- tBodyContainer -->
         </div><!-- scrollTableContainer -->
       </div>
-    </div>
+      <div class="custom-scroll">
+        <div class="scroll-view">
+          <div id="idScrollContent" class="scroll-content">
+            <p v-for="it in 10" :key="it" v-html="it"></p>
+          </div>
+        </div>
+      </div>
+    </div>    
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, onMounted, reactive } from 'vue'
 export default defineComponent({
   name: 'Html5.Primary',
   setup: () => {    
-    const options = [ 1, 2, 3, 4, 5, 6]
+    const bindScrollToElement = () => {
+      const info = {
+        mouseHeld: false,  // 鼠标down时才起作用
+        previousClientY: 0,
+        barMoveLength: 0, // bar可以移动的区域
+        contentMoveLength: 0, // 数据真实范围
+      }
+      const el = document.getElementById('idScrollContent');
+      const elParent = el.parentElement;
+      elParent.style = `display: flex;--width-scrollbar:20px;`;
+      el.style = `width: calc(100% - var(--width-scrollbar));height: 100%;overflow: hidden;`;
+      const elTrack = document.createElement('div');
+      elTrack.style = `width: var(--width-scrollbar); height: 100%;background-color: cadetblue;display: flex;flex-direction: column;`;
+      elParent.appendChild(elTrack);
+      const elBtnUp = document.createElement('div'); // 向下按钮
+      const elBtnDown = document.createElement('div'); // 向上按钮
+      const elTrackUp = document.createElement('div'); // bar向上的空间位置
+      const elTrackDown = document.createElement('div');// bar向下占剩余空间位置 flex-grow: 1
+      const elScrollBar = document.createElement('div'); // 实际bar-track
+      const btnStyle = `height: 0px;background-color: brown;`; 
+      elBtnUp.style = btnStyle;
+      elBtnDown.style = btnStyle;
+      elScrollBar.style = `height: 50px;background-color: darkblue;`;
+      elTrackDown.style = `flex-grow: 1;`;
+      elTrack.appendChild(elBtnUp);
+      elTrack.appendChild(elTrackUp);
+      elTrack.appendChild(elScrollBar);
+      elTrack.appendChild(elTrackDown);
+      elTrack.appendChild(elBtnDown);
+      const styleEl = getComputedStyle(el);
+      const styleUp = getComputedStyle(elBtnUp);
+      const styleBar = getComputedStyle(elScrollBar);
+      const fixedLength = parseInt(styleEl.height, 10);
+      // 初始位置
+      info.barMoveLength = fixedLength - parseInt(styleUp.height, 10) * 2 - parseInt(styleBar.height, 10);
+      info.contentMoveLength = el.scrollHeight - fixedLength;
+      console.log('-init-', fixedLength, info.barMoveLength, info.contentMoveLength, el.scrollHeight)
+      // 滚动到相当于elTrackUp的位置
+      const scrollTo = (top) => {
+        if (top < 0) {
+          // 滚动到顶部
+          el.scrollTop = 0; 
+        } else if (top > info.contentMoveLength) {
+          // 滚动到底部
+          el.scrollTop = info.contentMoveLength;
+        } else {
+          // 滚动到中间相对位置
+          el.scrollTop = top;
+        }
+        const barDownDistance = Math.ceil(el.scrollTop * info.barMoveLength / info.contentMoveLength);
+        console.log('-scroll to-', barDownDistance, el.scrollTop);
+        elTrackUp.style.height = `${barDownDistance}px`;
+      }
+      const scrollToRelative = (relative) => {
+        scrollTo(el.scrollTop + relative)
+      }
+      // 绑定事件
+      elBtnUp.addEventListener('click', ()=>scrollToRelative(-30));
+      elBtnDown.addEventListener('click', ()=>scrollToRelative(30));
+      elTrackUp.addEventListener('click', ()=>scrollToRelative(-300));
+      elTrackDown.addEventListener('click', ()=>scrollToRelative(-300));
+      elScrollBar.addEventListener('mousedown', (e:MouseEvent)=>{
+        info.mouseHeld = true;
+        info.previousClientY = e.clientY;
+      })
+      elParent.addEventListener('mouseout', (e:MouseEvent)=>{
+        info.mouseHeld = false;
+      })
+      elParent.addEventListener('mouseleave', (e:MouseEvent)=>{
+        info.mouseHeld = false;
+      })
+      document.addEventListener('mouseup', (e:MouseEvent)=>{
+        info.mouseHeld = false;
+      })
+      document.addEventListener('mousemove', (e:MouseEvent)=>{
+        if (info.mouseHeld) {
+          let offsetY = e.clientY - info.previousClientY;
+          console.log('-move-', offsetY)
+          let relative = Math.ceil(offsetY * info.contentMoveLength / info.barMoveLength)
+          let res = Math.min(relative, info.contentMoveLength);
+          console.log('-move relative-', relative, res);
+          scrollToRelative(Math.ceil(relative));
+          info.previousClientY = e.clientY;
+        }
+      })
+      el.addEventListener('mousewheel', (e:WheelEvent)=>{
+        handleMouseWheel(-e.wheelDelta, e);
+      })
+      const isOnTopOrBottom = () => {
+        return el.scrollTop == 0 || Math.ceil(el.scrollTop) == info.contentMoveLength;
+      }
+      const handleMouseWheel = (relative, e) => {
+        let previousOnTopOrButton = isOnTopOrBottom();
+        scrollToRelative(relative);
+        if (!isOnTopOrBottom() || (isOnTopOrBottom() && !previousOnTopOrButton)) {
+          e.preventDefault();
+        }
+      }
+    }
+    onMounted(()=>{
+      bindScrollToElement();
+    })
     return { 
-      options,
+      bindScrollToElement,
     }
   }
 })
@@ -268,6 +376,15 @@ export default defineComponent({
       }
       .touchScreen p#touchDeviceText {
           display: block;
+      }
+    }
+    .custom-scroll {
+      .scroll-view {
+        width: 320px;
+        height: 300px;
+        .scroll-content {
+          background-color: antiquewhite;
+        }
       }
     }
   }

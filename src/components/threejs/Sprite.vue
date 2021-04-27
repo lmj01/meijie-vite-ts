@@ -1,5 +1,5 @@
 <template>
-  <div class="threejs-trackball">
+  <div class="threejs-sprite">
     <canvas id="idcanvas" width="800" height="600"></canvas>
   </div>
 </template>
@@ -7,88 +7,85 @@
 <script lang="ts">
 import { ref, defineComponent, onMounted, reactive } from 'vue'
 import {
-  Vector2,
-  Vector3,
-  Quaternion,
   Float32BufferAttribute,
-  EventDispatcher,
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
   PointLight,
   Points,
   PointsMaterial,
   BufferGeometry,
-} from 'three/build/three.module'
+  PlaneGeometry,
+  MeshBasicMaterial,
+  Mesh,
+  DoubleSide,
+} from 'three'
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
-import {MjSprite} from './MjObject'
+import {initEngineByCanvas} from './AppAuxiliary'
+import {AppEngine} from './App'
+import {TextParameter, createTextTexture} from './MjObject'
 export default defineComponent({
   name: 'Trackball',
   setup: () => {    
-    /**
-    * Scene
-    **/
-    const app = reactive({
-      renderer: null,
-      controls: null,
-      canvas: null,
-    })
-    var scene = new Scene();
-    var camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 50;
-    // geom    
-    const vertices = [];
-    for (var i=0; i<5; i++) {
-      vertices.push(Math.random() * 20, Math.random() * 20, 0);
-    }
-    const geometry = new BufferGeometry();
-      geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
-    scene.add(new Points(geometry, new PointsMaterial({color: 0x00afaf})));
-    // light
-    var light = new PointLight( 0xffffff, .7, 0 );
-    light.position.set(1, 1, 100 );
-    scene.add(light)
-    // main
-    function animate() {
-      requestAnimationFrame( animate );
-      app.renderer.render( scene, camera );
-      app.controls.update();
-    }
+    const engine = new AppEngine();
     const pointCreate = () => {
-      
+      // geom    
+      const length = 10;
+      const offset = length / 2;
+      const vertices = [];
+      for (var i=0; i<50; i++) {
+        vertices.push(Math.random() * length - offset, Math.random() * length - offset, Math.random() * length - length);
+      }
+      const geometry = new BufferGeometry();
+      geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3));
+      engine.addObject(new Points(geometry, new PointsMaterial({color: 0xff0000})), false);        
     }
-    const spriteCreate = () => {
-
-    }
-    // animate();
-    onMounted(()=>{
-      app.canvas = document.getElementById('idcanvas');
-      let elParent = app.canvas.parentNode;
-      let style = getComputedStyle(elParent);
-      let width = parseInt(style.width);
-      let height = parseInt(style.height);
-      app.canvas.width = width;
-      app.canvas.height = height;
-      app.renderer = new WebGLRenderer({
-        antialias: true,
-        canvas: document.getElementById('idcanvas')
+    const planeCreate = () => {
+      const tPara:TextParameter = {
+        text: '25',
+        fontsize: 32,
+        rotate45: false,
+      }
+      const geo = new PlaneGeometry(5, 5, 32);
+      // const positionAttribute = geo.attributes.position;
+      // let uvs = [];
+      // for (let i=0, total = positionAttribute.count; i<total; i++) {
+      //     uvs.push(0, 1);
+      // }
+      // geo.setAttribute('uv', new Float32BufferAttribute(uvs, 2))
+      // console.log('--', geo)
+      const material:MeshBasicMaterial = new MeshBasicMaterial({
+        side: DoubleSide,
+        vertexColors: false,
       });
-      app.renderer.setSize( width, height );
-      app.controls = new TrackballControls(camera, app.renderer.domElement);
-      
-      spriteCreate();
-
-      animate();
+      createTextTexture(tPara).then((map)=>{
+        material.map = map;
+        material.needsUpdate = true;
+        console.log('-update plane texture-', material);        
+      })
+      const plane = new Mesh(geo, material);
+      engine.addObject(plane, false);
+    }
+    const lightCreate = () => {
+      // light
+      var light = new PointLight( 0xffffff, .7, 0 );
+      light.position.set(1, 1, 100 );
+      engine.addObject(light, true);    
+    }    
+    onMounted(()=>{
+      initEngineByCanvas('idcanvas', engine);
+      pointCreate();
+      lightCreate();
+      planeCreate();
     })
     return { 
-      app,
-      spriteCreate,
+      engine,
+      pointCreate,
+      lightCreate,
+      planeCreate,
     }
   }
 })
 </script>
 <style lang="scss" scoped>
-.threejs-trackball {
+.threejs-sprite {
   width: 100%;
   height: 100%;
   canvas {

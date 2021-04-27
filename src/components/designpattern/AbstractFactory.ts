@@ -1,5 +1,8 @@
-// https://refactoringguru.cn/design-patterns/abstract-factory/typescript/example
-// 抽象工厂
+//  - 简单工厂模式
+//  - 工厂方法模式
+//  - 抽象工厂模式
+//      https://refactoringguru.cn/design-patterns/abstract-factory/typescript/example
+
 // product A
 interface AbstractProductA {
     usefulFunctionA(): string;
