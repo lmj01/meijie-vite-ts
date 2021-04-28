@@ -53,11 +53,15 @@ export default defineComponent({
       // console.log('--', geo)
       const material:MeshBasicMaterial = new MeshBasicMaterial({
         side: DoubleSide,
+        color: 0xffffff,
         vertexColors: false,
+        transparent: true,
       });
       createTextTexture(tPara).then((map)=>{
         material.map = map;
+        material.map.needsUpdate = true;
         material.needsUpdate = true;
+        engine.renderFrame();
         console.log('-update plane texture-', material);        
       })
       const plane = new Mesh(geo, material);

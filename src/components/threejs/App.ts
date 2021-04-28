@@ -36,6 +36,9 @@ export class AppEngine {
         this.width = 0;
         this.height = 0;
         this.sideView = 'front';
+        if (import.meta.env.DEV) {
+            (<any>window).mjapp = this;
+        }
     }
     initial(options: AppOptions) {
         let self = this;

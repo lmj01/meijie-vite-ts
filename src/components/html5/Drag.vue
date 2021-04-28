@@ -11,6 +11,7 @@
         <div class="content-textarea" contenteditable="true">
           <p>文字内容</p>
         </div>
+        <div><SvgIcon name="icons-add2" /></div>
       </div>
       <div class="handle vertical" v-resizev:up @click="fResize" ></div>
       <div class="resize-area">
@@ -43,8 +44,14 @@
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
+// import SvgIcon from '@/components/SvgIcon'
+import SvgIcon from '../SvgIcon.vue'
+
 export default defineComponent({
   name: 'Html5.Drag',
+  components: {
+    SvgIcon,
+  },
   setup: () => {    
     const fResize = () => {
       // console.log('bind function resize');
