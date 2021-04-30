@@ -126,6 +126,12 @@ export const routerMap = [
                 component: ()=>import('@/components/html5/Primary.vue'),
                 meta: { id: 303 },
             },
+            {
+                path: 'event',
+                name: 'html5-event',
+                component: ()=>import('@/components/html5/Event.vue'),
+                meta: { id: 304 },
+            },
         ],
     },
     {
@@ -185,6 +191,7 @@ const menuTreeData = [
             {name: '拖拉效果', id:301, children: [] }, 
             {name: '阴影', id:302, children: [] },
             {name: '基本控件', id:303, children: [] },
+            {name: '标准事件', id:304, children: [] },
         ]
     },
     {
