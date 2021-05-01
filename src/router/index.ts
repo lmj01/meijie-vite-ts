@@ -149,14 +149,14 @@ export const routerMap = [
         ],
     },
     {
-        path: '/designpattern',
+        path: '/others',
         component: Layout1,
         meta: { id: 500 },
-        name: 'design-pattern',
+        name: 'others-parts',
         children: [
             {
-                path: 'factory',
-                name: 'abstract-factory',
+                path: 'designpattern',
+                name: 'DesignPattern',
                 component: ()=>import('@/components/designpattern/Index.vue'),
                 meta: { id: 501 },
             },
@@ -200,8 +200,8 @@ const menuTreeData = [
         ]
     },
     {
-        name:'designpasstern', id:500, children:[
-            {name: '抽象工厂', id:501, children: [] }, 
+        name:'其他类型', id:500, children:[
+            {name: '设计模式', id:501, children: [] }, 
         ]
     }
 ]

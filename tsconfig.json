@@ -15,6 +15,7 @@
       "babylonjs",
       "three",
       "node",
+      "codemirror",
     ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "page1/page1.ts"]
