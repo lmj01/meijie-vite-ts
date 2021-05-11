@@ -1,8 +1,4 @@
-//  - 简单工厂模式
-//  - 工厂方法模式
 //  - 抽象工厂模式
-//      https://refactoringguru.cn/design-patterns/abstract-factory/typescript/example
-
 // product A
 interface AbstractProductA {
     usefulFunctionA(): string;
@@ -12,7 +8,7 @@ class ConcreteProductA1 implements AbstractProductA {
         return 'the result of the product A1.';
     }
 }
-class ConcreateProductA2 implements AbstractProductA {
+class ConcreteProductA2 implements AbstractProductA {
     public usefulFunctionA() : string {
         return 'the result of the product A2.';
     }
@@ -22,7 +18,7 @@ interface AbstractProductB {
     usefulFunctionB(): string;
     anotherUsefulFunctionB(collaborator: AbstractProductA) : string;
 }
-class ConcreateProductB1 implements AbstractProductB {
+class ConcreteProductB1 implements AbstractProductB {
     public usefulFunctionB() : string {
         return 'the result of the product B1.';
     }
@@ -31,7 +27,7 @@ class ConcreateProductB1 implements AbstractProductB {
         return `the result of the B1  collaborating with the (${result})`;
     }
 }
-class ConcreateProductB2 implements AbstractProductB {
+class ConcreteProductB2 implements AbstractProductB {
     public usefulFunctionB(): string {
         return 'the result of the product B2.';
     }
@@ -41,23 +37,34 @@ class ConcreateProductB2 implements AbstractProductB {
     }
 }
 // factory
-export interface AbstractFactory {
+interface AbstractFactory {
     createProductA() : AbstractProductA;
     createProductB() : AbstractProductB;
 }
-export class ConcreateFactory1 implements AbstractFactory {
+class ConcreteFactory1 implements AbstractFactory {
     public createProductA(): AbstractProductA {
         return new ConcreteProductA1();
     }
     public createProductB(): AbstractProductB {
-        return new ConcreateProductB1();
+        return new ConcreteProductB1();
     }
 }
-export class ConcreateFactory2 implements AbstractFactory {
+class ConcreteFactory2 implements AbstractFactory {
     public createProductA(): AbstractProductA {
-        return new ConcreateProductA2();
+        return new ConcreteProductA2();
     }
     public createProductB(): AbstractProductB {
-        return new ConcreateProductB2();
+        return new ConcreteProductB2();
     }
 }
+const clientCode = (factory: AbstractFactory) => {
+    const productA = factory.createProductA();
+    const productB = factory.createProductB();
+    console.log(productB.usefulFunctionB());
+    console.log(productB.anotherUsefulFunctionB(productA));
+}
+export const testAbstractFactory = () => {
+    clientCode(new ConcreteFactory1());
+    clientCode(new ConcreteFactory2());
+}
+  
