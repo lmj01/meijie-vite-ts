@@ -16,6 +16,28 @@ let routes = [
                 name: 'page1.test2',
                 component: () => import('@/components/bootstrap/test2.vue'),
             },
+            {
+                path: 'recipe',
+                name: 'page1.recipe',
+                component: () => import('@/components/bootstrap/Recipe.vue'),
+                children: [
+                    {
+                        path: 'framea',
+                        name: 'recipe.frame.a',
+                        component: () => import('@/components/bootstrap/recipe/FrameA.vue'),
+                    },
+                    {
+                        path: 'frameb',
+                        name: 'recipe.frame.b',
+                        component: () => import('@/components/bootstrap/recipe/FrameB.vue'),
+                    },
+                    {
+                        path: 'framec',
+                        name: 'recipe.frame.c',
+                        component: () => import('@/components/bootstrap/recipe/FrameC.vue'),
+                    },
+                ],
+            },
         ],
     },
 ];
