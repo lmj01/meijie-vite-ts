@@ -1,0 +1,5 @@
+{
+    "watch": ["style"],
+    "exec": "npm run css-mj",
+    "ext": "scss"
+}

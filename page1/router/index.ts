@@ -49,9 +49,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log('before router', to, from);
-
+    if (import.meta.env.DEV) {
+        console.log('before router', to, from);
+    }
     next();
 })
-console.log(router)
 export default router;
