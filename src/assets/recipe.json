@@ -1,0 +1,377 @@
+{
+    "recipe": [
+        { "code":1, "name":"主诉", "pos":"principal.diagnosis", "query":"principalDiagnosis" },
+        { "code":2, "name":"牙弓治疗", "pos":"dental.arch", "query":"dentalArch" },
+        { "code":3, "name":"缺牙信息", "pos":"", "query":"teethMissing" },
+        { "code":4, "name":"不移动牙齿", "pos":"teeth.restrict.move", "query":"teethRestrictMove" },
+        { "code":5, "name":"不加附件牙齿", "pos":"teeth.restrict.attach", "query":"teethRestrictAttach" },
+        { "code":6, "name":"现磨牙关系", "pos":"molar", "query":"molar" },
+        { "code":7, "name":"矢状向关系", "pos":"mesio.distal", "query":"mesioDistal" },
+        { "code":8, "name":"覆HE", "pos":"overbite", "query":"overbite" },
+        { "code":9, "name":"覆盖", "pos":"overjet", "query":"overjet" },
+        { "code":10, "name":"前牙反HE", "pos":"anterior.crossbite", "query":"anteriorCrossbite" },
+        { "code":11, "name":"前牙对刃HE", "pos":"anterior.edge2edge", "query":"anteriorEdge2edge" },
+        { "code":12, "name":"后牙反HE或锁HE", "pos":"posterior.crossbite", "query":"posteriorCrossbite" },
+        { "code":13, "name":"中线", "pos":"midline", "query":"midline" },
+        { "code":14, "name":"关闭间隙", "pos":"spacing", "query":"spacing" },
+        { "code":15, "name":"预留间隙", "pos":"", "query":"spacingData" },
+        { "code":16, "name":"拥挤", "pos":"crowd", "query":"crowd" },
+        { "code":17, "name":"拔牙", "pos":"teeth.extracted", "query":"teethExtracted" },
+        { "code":18, "name":"远程", "pos":"remote", "query":"remote" },
+        { "code":19, "name":"特殊说明", "pos":"special.describe", "query":"specialDescribe" }
+    ],
+    "principal.diagnosis": [
+        { "code": 1, "name":"牙列拥挤" },
+        { "code": 2, "name":"牙列间隙" },
+        { "code": 3, "name":"上颌前突" },
+        { "code": 4, "name":"双颌前突" },
+        { "code": 5, "name":"深覆HE" },
+        { "code": 6, "name":"开HE" },
+        { "code": 7, "name":"前牙反HE" },
+        { "code": 8, "name":"后牙反HE" },
+        { "code": 9, "name":"其他情况说明", "describe": "describe" }
+    ],
+    "dental.arch": [
+        { 
+            "code": 100, "name":"上颌", 
+            "data": [
+                { "code": 101, "name":"有对颌模型" },
+                { "code": 102, "name":"无对颌模型" }
+            ], "text":"对颌诊断模型"
+        },
+        { 
+            "code": 200, "name":"下颌", 
+            "data": [
+                { "code": 201, "name":"有对颌模型" },
+                { "code": 202, "name":"无对颌模型" }
+            ], "text":"对颌诊断模型"
+        },
+        { "code": 300, "name":"双颌" }
+    ],
+    "teeth.restrict.move": [
+        { "code": 1, "name":"无" },
+        { "code": 2, "name":"以下牙齿不可移动" }
+    ],
+    "teeth.restrict.attach": [
+        { "code": 1, "name":"无" },
+        { "code": 2, "name":"以下牙齿不加附件" }
+    ],
+    "molar": [
+        { 
+            "code": 100, "name":"左侧", 
+            "data": [
+                { "code": 101, "name":"安氏I类" },
+                { "code": 102, "name":"安氏II类" },
+                { "code": 103, "name":"安氏III类" },
+                { "code": 104, "name":"不确定" }
+            ]
+        },
+        { 
+            "code": 200, "name":"右侧", 
+            "data": [
+                { "code": 201, "name":"安氏I类" },
+                { "code": 202, "name":"安氏II类" },
+                { "code": 203, "name":"安氏III类" },
+                { "code": 204, "name":"不确定" }
+            ]
+        }
+    ],
+    "mesio.distal": [
+        { 
+            "code": 1000, "name":"左侧", 
+            "data": [
+                { "code": 1600, "name":"3D设计后再确定" },
+                { "code": 1100, "name":"维持" },
+                { 
+                    "code": 1200, "name":"仅改善尖牙关系", 
+                    "data": [
+                        { "code": 1201, "name":"邻面去釉" },
+                        { "code": 1202, "name":"II/III类牵引" },
+                        { "code": 1203, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 1500, "name":"仅改善磨牙关系", 
+                    "data": [
+                        { "code": 1501, "name":"邻面去釉" },
+                        { "code": 1502, "name":"II/III类牵引" },
+                        { "code": 1503, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 1300, "name":"改善尖牙和磨牙关系", 
+                    "data": [
+                        { "code": 1301, "name":"邻面去釉" },
+                        { "code": 1302, "name":"II/III类牵引" },
+                        { "code": 1303, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 1400, "name":"调整到中性", 
+                    "data": [
+                        { "code": 1401, "name":"邻面去釉" },
+                        { "code": 1402, "name":"II/III类牵引" },
+                        { "code": 1403, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                }
+            ]
+        },
+        { 
+            "code": 2000, "name":"右侧", 
+            "data": [
+                { "code": 2600, "name":"3D设计后再确定" },
+                { "code": 2100, "name":"维持" },
+                { 
+                    "code": 2200, "name":"仅改善尖牙关系", 
+                    "data": [
+                        { "code": 2201, "name":"邻面去釉" },
+                        { "code": 2202, "name":"II/III类牵引" },
+                        { "code": 2203, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 2500, "name":"仅改善磨牙关系", 
+                    "data": [
+                        { "code": 2501, "name":"邻面去釉" },
+                        { "code": 2502, "name":"II/III类牵引" },
+                        { "code": 2503, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 2300, "name":"改善尖牙和磨牙关系", 
+                    "data": [
+                        { "code": 2301, "name":"邻面去釉" },
+                        { "code": 2302, "name":"II/III类牵引" },
+                        { "code": 2303, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                },
+                { 
+                    "code": 2400, "name":"调整到中性", 
+                    "data": [
+                        { "code": 2401, "name":"邻面去釉" },
+                        { "code": 2402, "name":"II/III类牵引" },
+                        { "code": 2403, "name":"远移磨牙(需配合颌间牵引)" }
+                    ] 
+                }
+            ]
+        }
+    ],
+    "overbite": [
+        { "code": 1000, "name":"3D设计后再确定" },
+        { "code": 2000, "name":"维持" },
+        { 
+            "code": 3000, "name":"纠正开HE", 
+            "data": [
+                {
+                    "code": 3100, "name":"伸长前牙", 
+                    "data": [
+                        { "code": 3101, "name":"上颌" },
+                        { "code": 3102, "name":"下颌" }
+                    ] 
+                },
+                { "code": 3200, "name":"其他特殊情况", "describe": "describe" }
+            ]
+        },
+        { 
+            "code": 4000, "name":"纠正深覆HE", 
+            "data": [
+                { 
+                    "code": 4100, "name":"只压低前牙", 
+                    "data": [
+                        { "code": 4101, "name":"上颌" },
+                        { "code": 4102, "name":"下颌" }
+                    ] 
+                },
+                { 
+                    "code": 4200, "name":"压低前牙并升高前磨牙", 
+                    "data": [
+                        { "code": 4201, "name":"上颌" },
+                        { "code": 4202, "name":"下颌" }
+                    ] 
+                },
+                { 
+                    "code": 4300, "name":"前牙咬合板(适用于深覆牙)", 
+                    "data": [
+                        { "code": 4301, "name":"切牙" },
+                        { "code": 4302, "name":"尖牙" }
+                    ] 
+                },
+                { "code": 4400, "name":"其他特殊情况", "describe": "describe" }
+            ]
+        }
+    ],
+    "overjet": [
+        { "code": 100, "name":"3D设计后再确定" },
+        { "code": 200, "name":"维持" },
+        { "code": 300, "name":"改善" }
+    ],
+    "anterior.crossbite": [        
+        { "code": 300, "name":"3D设计后再确定" },
+        { "code": 100, "name":"不纠正" },
+        { 
+            "code": 200, "name":"纠正", 
+            "data": [
+                { "code": 201, "name":"唇倾上前牙" },
+                { "code": 202, "name":"舌倾下前牙" }
+            ]
+        }
+    ],   
+    "anterior.edge2edge": [
+        { "code": 300, "name":"3D设计后再确定" },
+        { "code": 100, "name":"不纠正" },
+        { 
+            "code": 200, "name":"纠正", 
+            "data": [
+                { "code": 201, "name":"唇倾伸长上颌前牙" },
+                { "code": 202, "name":"舌倾伸长下颌前牙" }
+            ]
+        }
+    ],
+    "posterior.crossbite": [
+        { "code": 300, "name":"3D设计后再确定" },
+        { "code": 100, "name":"不纠正" },
+        { "code": 200, "name":"纠正" }        
+    ],
+    "midline": [
+        { "code": 100, "name":"3D设计后再确定" },
+        { "code": 200, "name":"维持中线（可能需邻面去釉）" },
+        { "code": 300, "name":"改善中线（可能需邻面去釉）" }
+    ],   
+    "spacing": [
+        { 
+            "name":"上颌", "code": 1000, "text": "上颌",
+            "data": [                
+                { "code": 1100, "name":"3D设计后再确定" },
+                { 
+                    "code": 1200, "name":"关闭所有间隙", 
+                    "data": [
+                        { "code": 1201, "name":"前牙内收" },
+                        { "code": 1202, "name":"后牙前移" },
+                        { "code": 1203, "name":"前牙内收、后牙前移" }
+                    ]
+                }
+            ] 
+        },
+        { 
+            "name":"下颌", "code": 2000, "text":"下颌",
+            "data": [                
+                { "code": 2100, "name":"3D设计后再确定" },
+                { 
+                    "code": 2200, "name":"关闭所有间隙", 
+                    "data": [
+                        { "code": 2201, "name":"前牙内收" },
+                        { "code": 2202, "name":"后牙前移" },
+                        { "code": 2203, "name":"前牙内收、后牙前移" }
+                    ]
+                }
+            ] 
+        }
+    ],   
+    "crowd": [
+        { "code": 10000, "name":"3D设计后再确定" },
+        { 
+            "code": 20000, "name":"间隙获取", 
+            "data": [
+                { 
+                    "code": 21000, "name":"上颌", 
+                    "data": [
+                        { 
+                            "code": 21100, "name":"扩弓", 
+                            "data": [
+                                { "code": 21101, "name":"首选" },
+                                { "code": 21102, "name":"可选" },
+                                { "code": 21103, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 21200, "name":"唇倾", 
+                            "data": [
+                                { "code": 21201, "name":"首选" },
+                                { "code": 21202, "name":"可选" },
+                                { "code": 21203, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 21300, "name":"前牙邻面去釉", 
+                            "data": [
+                                { "code": 21301, "name":"首选" },
+                                { "code": 21302, "name":"可选" },
+                                { "code": 21303, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 21500, "name":"后牙邻面去釉", 
+                            "data": [
+                                { "code": 21501, "name":"首选" },
+                                { "code": 21502, "name":"可选" },
+                                { "code": 21503, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 21400, "name":"远移磨牙(多选)", 
+                            "data": [
+                                { "code": 21401, "name":"右上" },
+                                { "code": 21402, "name":"左上" }
+                            ]                      
+                        }
+                    ]                    
+                },
+                { 
+                    "code": 22000, "name":"下颌", 
+                    "data": [
+                        { 
+                            "code": 22100, "name":"扩弓", 
+                            "data": [
+                                { "code": 22101, "name":"首选" },
+                                { "code": 22102, "name":"可选" },
+                                { "code": 22103, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 22200, "name":"唇倾", 
+                            "data": [
+                                { "code": 22201, "name":"首选" },
+                                { "code": 22202, "name":"可选" },
+                                { "code": 22203, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 22300, "name":"前牙邻面去釉", 
+                            "data": [
+                                { "code": 22301, "name":"首选" },
+                                { "code": 22302, "name":"可选" },
+                                { "code": 22303, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 22500, "name":"后牙邻面去釉", 
+                            "data": [
+                                { "code": 22501, "name":"首选" },
+                                { "code": 22502, "name":"可选" },
+                                { "code": 22503, "name":"不选" }
+                            ]                     
+                        },
+                        { 
+                            "code": 22400, "name":"远移磨牙(多选)", 
+                            "data": [
+                                { "code": 22401, "name":"右下" },
+                                { "code": 22402, "name":"左下" }
+                            ]                      
+                        }
+                    ]                    
+                }
+            ]
+        }
+    ],
+    "teeth.extracted": [
+        { "code": 1, "name":"无" },
+        { "code": 2, "name":"拔除以下牙齿" }
+    ],
+    "remote": [
+        { "code": 1, "name":"否" },
+        { "code": 2, "name":"季度复诊一次" },
+        { "code": 3, "name":"半年复诊一次" },
+        { "code": 4, "name":"一年复诊一次" },
+        { "code": 5, "name":"无法确定复诊周期", "describe": "describe" }
+    ]   
+}

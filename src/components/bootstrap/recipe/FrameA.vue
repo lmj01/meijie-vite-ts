@@ -13,11 +13,23 @@
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="inputPassword" aria-describedby="input-sizing-sm">
                 </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputDate" class="col-sm-2 col-form-label col-form-label-sm">日期</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control form-control-sm" id="inputDate" aria-describedby="input-sizing-sm">
+                </div>
+            </div>            
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">带icon的</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <div class="input-group-text" id="btnGroupAddon">@</div>
+                        <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                    </div>    
+                    
+                </div>
             </div>        
-            <div class="input-group">
-                <div class="input-group-text" id="btnGroupAddon">@</div>
-                <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
-            </div>    
             <div class="mb-3 row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">姓名</label>
                 <div class="col-sm-10">
