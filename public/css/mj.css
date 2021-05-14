@@ -7860,4 +7860,8 @@ body #app {
   position: relative;
 }
 
+.frame-b {
+  overflow: auto;
+}
+
 /*# sourceMappingURL=mj.css.map */

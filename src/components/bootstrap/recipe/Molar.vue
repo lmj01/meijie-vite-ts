@@ -3,16 +3,16 @@
         <label for="" class="col-sm-2 col-form-label">{{data.name}}</label>
         <div class="col-sm-10">
             <div class="btn-group" role="group">
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[0]" checked>
+                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[0]" :code="data.data[0].code">
                 <label class="btn btn-outline-primary" :for="ud.ids[0]">{{data.data[0].name}}</label>
 
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[1]" >
+                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[1]" :code="data.data[1].code">
                 <label class="btn btn-outline-primary" :for="ud.ids[1]">{{data.data[1].name}}</label>
 
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[2]" >
+                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[2]" :code="data.data[2].code">
                 <label class="btn btn-outline-primary" :for="ud.ids[2]">{{data.data[2].name}}</label>
 
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[3]" >
+                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[3]" :code="data.data[3].code">
                 <label class="btn btn-outline-primary" :for="ud.ids[3]">{{data.data[3].name}}</label>
             </div>
         </div>
@@ -27,12 +27,13 @@ export default defineComponent({
     props: {
         left: {
             type: Boolean,
-            default: false,
+            default: true,
         }
     },
     setup(props) {
         const store = useStore()
         const ud = reactive({
+            sel: store.getters['recipe/molar'](props.left),
             type: '',
             ids: [],
         })
@@ -40,18 +41,21 @@ export default defineComponent({
         ud.type = `brType${data.code}`
         if (data.data) {
             data.data.forEach((e) => {
-                ud.ids.push(`brId${e.code}`)
+                ud.ids.push(`brMolar${e.code}`)
             })
         }
         onMounted(() => {
             const ctx = getCurrentInstance()
             const elInputs = ctx.ctx.$el.querySelectorAll('input[type="radio"]')
             elInputs.forEach((input: HTMLElement) => {
+                if (parseInt(input.getAttribute('code'), 10) == ud.sel) {
+                    input.setAttribute('checked', 'checked');
+                }
                 input.addEventListener('click', (event)=>{
                     const idInput = event.target.id;
                     const code = parseInt(idInput.match(/\d+/)[0], 10)
+                    ud.sel = code;
                     store.commit('recipe/setMolar', { left: props.left, code: code });
-                    console.log('-input click-', idInput, code)
                 })
             })
         })
