@@ -1,6 +1,45 @@
 <template>
   <div class="design-pattern">
-    <p>抽象工厂</p>    
+    <div class="all">
+      <div class="creational">
+        <p>创建型模式Creational Patterns</p>
+        <p>提供了一种创建对象同时隐藏创建逻辑的，不使用new直接实例化对象</p>
+        <button @click="callByBtn(0)">抽象工厂Abstract Factory</button>
+        <button @click="callByBtn(1)">工厂方法Factory</button>
+        <button @click="callByBtn(2)">生成Builder</button>
+        <button @click="callByBtn(3)">原型Prototype</button>
+        <button @click="callByBtn(4)">单例Singleton</button>        
+      </div>
+      <div class="structural">
+        <p>结构型模式Structural Patterns</p>
+        <p>关注类和对象的组合</p>
+        <button @click="callByBtn(5)">适配器Adapter</button>
+        <button @click="callByBtn(6)">桥接Bridge</button>
+        <button @click="callByBtn(7)">组合Composite</button>
+        <button @click="callByBtn(8)">装饰Decorator</button>
+        <button @click="callByBtn(9)">外观Facade</button>
+        <button @click="callByBtn(10)">享元Flyweight</button>
+        <button @click="callByBtn(11)">代理Proxy</button>
+        <button @click="callByBtn(12)">过滤器Filter(Criteria)</button>
+      </div>
+      <div class="behavioral">
+        <p>行为模式Behavioral Patterns</p>
+        <p>关注对象之间的通信</p>
+        <button @click="callByBtn(13)">责任链Chain of Responsibility</button>
+        <button @click="callByBtn(14)">命令Command</button>
+        <button @click="callByBtn(15)">迭代器Iterator</button>
+        <button @click="callByBtn(16)">中介者Mediator</button>
+        <button @click="callByBtn(17)">备忘录Memento</button>
+        <button @click="callByBtn(18)">观察者Observer</button>
+        <button @click="callByBtn(19)">状态State</button>
+        <button @click="callByBtn(20)">策略Strategy</button>
+        <button @click="callByBtn(21)">模板方法Template</button>
+        <button @click="callByBtn(22)">访问者Visitor</button>
+        <button @click="callByBtn(23)">解释器Interpreter</button>
+      </div>
+      <div id="codeDiv" class="">
+      </div>  
+    </div>
     <div>
       <p><q>Rather than try to fit a problem to the procedural approach of a language, OOP attempts to fit the language to the problem</q></p>
       <p><q>The C++ Shift: Object-Oriented Programming, C++ Primer Plus, sixth Edition</q></p>
@@ -16,183 +55,90 @@
       <p>5、迪米特Demeter：一个实体尽量少地与其他实体发生相互作用，尽量功能模块相对独立</p>
       <p>6、合成复用Composite Reuse：尽量使用合成(聚合)而不是使用继承</p>
     </div>
-    <div class="all">
-      <div class="creational">
-        <p>创建型模式Creational Patterns</p>
-        <p>提供了一种创建对象同时隐藏创建逻辑的，不使用new直接实例化对象</p>
-        <button @click="callAbstractFactory">抽象工厂Abstract Factory</button>
-        <button @click="callFactoryMethod">工厂方法Factory</button>
-        <button @click="callBuilder">生成Builder</button>
-        <button @click="callPrototype">原型Prototype</button>
-        <button @click="callSingleton">单例Singleton</button>        
-      </div>
-      <div class="structural">
-        <p>结构型模式Structural Patterns</p>
-        <p>关注类和对象的组合</p>
-        <button @click="callAdapter">适配器Adapter</button>
-        <button @click="callBridge">桥接Bridge</button>
-        <button @click="callComposite">组合Composite</button>
-        <button @click="callDecorator">装饰Decorator</button>
-        <button @click="callFacade">外观Facade</button>
-        <button @click="callFlyweight">享元Flyweight</button>
-        <button @click="callProxy">代理Proxy</button>
-        <button @click="callFilter">过滤器Filter(Criteria)</button>
-      </div>
-      <div class="behavioral">
-        <p>行为模式Behavioral Patterns</p>
-        <p>关注对象之间的通信</p>
-        <button @click="callChainOfResponsibility">责任链Chain of Responsibility</button>
-        <button @click="callCommand">命令Command</button>
-        <button @click="callIterator">迭代器Iterator</button>
-        <button @click="callMediator">中介者Mediator</button>
-        <button @click="callMemento">备忘录Memento</button>
-        <button @click="callObserver">观察者Observer</button>
-        <button @click="callState">状态State</button>
-        <button @click="callStrategy">策略Strategy</button>
-        <button @click="callTemplateMethod">模板方法Template</button>
-        <button @click="callVisitor">访问者Visitor</button>
-        <button @click="callVisitor">解释器Interpreter</button>
-      </div>  
-    </div>
-    <div>
-      <textarea ref="code" id="code"></textarea>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router'
-import CodeMirror from 'codemirror'
-// 核心样式
-import 'codemirror/lib/codemirror.css'
-// 主题色彩
-// import 'codemirror/theme/idea.css'
-import 'codemirror/mode/javascript/javascript'
+import { codeMirrorEditor } from '@/helpers/CodeMirror'
 
-import 'codemirror/addon/fold/foldcode'
-import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/fold/foldgutter.css'
-import 'codemirror/addon/fold/brace-fold'
-import 'codemirror/addon/fold/comment-fold'
-import 'codemirror/addon/scroll/simplescrollbars'
-import 'codemirror/addon/scroll/simplescrollbars.css'
-
-import { testAbstractFactory } from './AbstractFactory';
-import { testBuilder } from './Builder';
-import { testFactoryMethod } from './FactorMethod';
-import { testPrototype } from './Prototype'
-import { testSingleton } from './Singleton'
-import { testAdapter } from './Adapter'
-import { testBridge } from './Bridge'
-import { testComposite } from './Composite'
-import { testDecorator } from './Decorator'
-import { testFacade } from './Facade'
-import { testFlyweight } from './Flyweight'
-import { testProxy } from './Proxy'
-import { testChainOfResponsibility } from './ChainOfResponsibility'
-import { testCommand } from './Command'
-import { testIterator } from './Iterator'
-import { testMediator } from './Mediator'
-import { testMemento } from './Memento'
-import { testObserver } from './Observer'
-import { testState } from './State'
-import { testStrategy } from './Strategy'
-import { testTemplateMethod } from './TemplateMethod'
-import { testVisitor } from './Visitor'
-import { testFilter } from './Filter'
+import { creational, structural, behavioral } from './Index'
 
 export default defineComponent({
-  name: 'Abstract.Factory',
+  name: 'DesignPattern',
   setup: () => {  
     const route = useRouter()
-    console.log('--setup--', route)
-    const codeEditor = ref(null)
-    const configEditor: CodeMirror.EditorConfiguration = {
-      value: '',
-      height: '350px',
-      tabsize: 4,
-      lineNumbers: true,
-      mode: 'javascript',
-      autofocus: true,
-      autoMatchParens: true,
-      styleActiveLine: true,
-      // theme: 'idea',
-      rtlMoveVisually: true,
-      scrollbarStyle: 'overlay',
-      lineWrapping: true,
-      foldGutter: true,
-      gutters:['CodeMirror-linenumbers', 'CodeMirrorfoldgutter'],
-    }
+    const { mjCreateEditor, mjUpdateCode } = codeMirrorEditor();
     onMounted(()=>{
-      const elEditor = document.getElementById('code') as HTMLTextAreaElement;
-      codeEditor.value = CodeMirror.fromTextArea(elEditor, configEditor);
-      console.log('-editor-', codeEditor.value);
-      codeEditor.value.setValue('');
-      // codeEditor.value.on('change', ()=>{
-      //   console.log('-after change-', codeEditor.value.getValue());
-      // })
+      mjCreateEditor(document.getElementById('codeDiv'))
     })
-    const callByCode = () => {
-      
-      const name = 'Adapter.ts'
-      const testname = '/src/components/designpattern/Adapter.ts'
+    const srcName = [
+      // 0
+      'AbstractFactory',
+      'FactoryMethod',
+      'Builder',      
+      'Prototype',
+      'Singleton',
+      // 5
+      'Adapter',
+      'Bridge',
+      'Composite',
+      'Decorator',
+      'Facade',
+      'Flyweight',
+      'Proxy',
+      'Criteria',
+      // 13
+      'ChainOfResponsibility',
+      'Command',
+      'Iterator',
+      'Mediator',
+      'Memento',
+      'Observer',
+      'State',
+      'Strategy',
+      'TemplateMethod',
+      'Visitor',
+      'Interpreter',
+    ]
+    const callByCode = (idx: number) => {      
+      const testname = `/src/components/designpattern/${srcName[idx]}.ts`;
       fetch(testname).then(res=>res.text()).then((res)=>{
         let res2 = res.split('//# sourceMappingURL');
-        console.log('--', res2)
-        codeEditor.value.setValue(res2[0]);
+        mjUpdateCode(res2[0]);
       })
     }
-    const callAbstractFactory = () => {
-      testAbstractFactory();
-      callByCode();
+    const callByBtn = (idx: number) => {
+      if (idx == 0) creational.testAbstractFactory();
+      else if (idx == 1) creational.testFactoryMethod();
+      else if (idx == 2) creational.testBuilder();
+      else if (idx == 3) creational.testPrototype();
+      else if (idx == 4) creational.testSingleton();
+      else if (idx == 5) structural.testAdapter();
+      else if (idx == 6) structural.testBridge();
+      else if (idx == 7) structural.testComposite();
+      else if (idx == 8) structural.testDecorator();
+      else if (idx == 9) structural.testFacade();
+      else if (idx == 10) structural.testFlyweight();
+      else if (idx == 11) structural.testProxy();
+      else if (idx == 12) structural.testFilter();
+      else if (idx == 13) behavioral.testChainOfResponsibility();
+      else if (idx == 14) behavioral.testCommand();
+      else if (idx == 15) behavioral.testIterator();
+      else if (idx == 16) behavioral.testMediator();
+      else if (idx == 17) behavioral.testMemento();
+      else if (idx == 18) behavioral.testObserver();
+      else if (idx == 19) behavioral.testState();
+      else if (idx == 20) behavioral.testStrategy();
+      else if (idx == 21) behavioral.testTemplateMethod();
+      else if (idx == 22) behavioral.testVisitor();
+      else throw 'not valid index'
+      // 
+      callByCode(idx)
     }
-    const callBuilder = () => testBuilder();
-    const callFactoryMethod = ()=> testFactoryMethod();
-    const callPrototype = ()=> testPrototype();
-    const callSingleton = () => testSingleton();
-    const callAdapter = () => testAdapter();
-    const callBridge = () => testBridge();
-    const callComposite = () => testComposite();
-    const callDecorator = () => testDecorator();
-    const callFacade = () => testFacade();
-    const callFlyweight = () => testFlyweight();
-    const callProxy = () => testProxy();
-    const callChainOfResponsibility = () => testChainOfResponsibility();
-    const callCommand = () => testCommand();
-    const callMediator = () => testMediator();
-    const callIterator = () => testIterator();
-    const callMemento = () => testMemento();
-    const callObserver = () => testObserver();
-    const callState = () => testState();
-    const callStrategy = () => testStrategy();
-    const callTemplateMethod = () => testTemplateMethod();
-    const callVisitor = () => testVisitor();
-    const callFilter = () => testFilter();
     return { 
-      callAbstractFactory,
-      callBuilder,
-      callFactoryMethod,
-      callPrototype,
-      callSingleton,
-      callAdapter,
-      callBridge,
-      callComposite,
-      callDecorator,
-      callFacade,
-      callFlyweight,
-      callProxy,
-      callChainOfResponsibility,
-      callCommand,
-      callMediator,
-      callIterator,
-      callMemento,
-      callObserver,
-      callState,
-      callStrategy,
-      callTemplateMethod,
-      callVisitor,
-      callFilter,
+      callByBtn,
     }
   }
 })
@@ -209,13 +155,19 @@ export default defineComponent({
     .creational,
     .structural,
     .behavioral {
-      min-width: 300px;
+      // min-width: 300px;
+      width: 25%;
       display: flex;
       flex-direction: column;
       margin: auto;
+      border: 1px dashed;
       button {
         width: auto;
       }
+    }
+    #codeDiv {
+      width: 400px;
+      border: 1px dashed lightblue;
     }
   }
 }

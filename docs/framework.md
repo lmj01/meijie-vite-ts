@@ -27,6 +27,9 @@ vite构建工具中自动集成了scss，所以不需要sass-loader之类的，�
 threejs不要使用Vue的reactive之类的函数，因为会使用Proxy封装对象，导致出现失败
 Uncaught (in promise) TypeError: 'get' on proxy: property 'modelViewMatrix' is a read-only and non-configurable data property on the proxy target but the proxy did not return its actual value (expected '#<Matrix4>' but got '[object Object]')
 
+codemirror
+[主体色彩模式](https://codemirror.net/demo/theme.html)
+
 ## 术语
 
 - HMR(Hot Module Replacement)模块热替换

@@ -160,6 +160,12 @@ export const routerMap = [
                 component: ()=>import('@/components/designpattern/Index.vue'),
                 meta: { id: 501 },
             },
+            {
+                path: 'ecmascript',
+                name: 'ECMAScript.Note',
+                component: ()=>import('@/components/ecmascript/Index.vue'),
+                meta: { id: 502 },
+            },
         ],
     },
 ]
@@ -202,6 +208,7 @@ const menuTreeData = [
     {
         name:'其他类型', id:500, children:[
             {name: '设计模式', id:501, children: [] }, 
+            {name: 'ECMAScript', id:502, children: [] }, 
         ]
     }
 ]
