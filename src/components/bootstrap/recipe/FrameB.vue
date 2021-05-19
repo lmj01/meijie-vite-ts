@@ -1,7 +1,8 @@
 <template>
     <div class="frame-b">
         <p>Frame B</p>
-        
+        <Teeth name="缺失牙齿" />
+        <Crowd />
         <SpecialDescribe />
         <Remote />
         <Spacing />
@@ -34,6 +35,8 @@ import MiddleLine from './MiddleLine.vue'
 import Spacing from './Spacing.vue'
 import Remote from './Remote.vue'
 import SpecialDescribe from './SpecialDescribe.vue'
+import Crowd from './Crowd.vue'
+import Teeth from './Teeth.vue'
 
 export default defineComponent({
     name: 'Recipe.Frame.B',
@@ -50,6 +53,8 @@ export default defineComponent({
         Spacing,
         Remote,
         SpecialDescribe,
+        Crowd,
+        Teeth,
     },
 })
 </script>

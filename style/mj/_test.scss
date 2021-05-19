@@ -22,3 +22,65 @@
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
     }
 }
+
+// table 
+$table-search-height: 0px;
+$table-pagination-height: 50px;
+$table-header-height: 50px;
+.table-component {
+    width: 1200px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  // background: lightblue;
+  .table-search {
+    height: $table-search-height;
+  }
+  .table-pagination {
+    height: $table-pagination-height;
+  }
+  .table-container {
+    width: 100%;
+    height: calc(100% - #{$table-search-height + $table-pagination-height});
+    border: 1px solid black;
+    .table-header-container {
+      background: #CC3600;
+      color: white;
+      font-weight: bold;
+      height: $table-header-height;
+    }
+    .table-body-container {
+      height: calc(100% - #{$table-header-height});
+      overflow-y: scroll;
+    }
+    table {
+      width: 100%;
+      &#tHead {
+        height: 100%;
+      }
+      border-collapse: collapse;
+      table-layout: fixed;
+    //   table-layout: auto;
+      empty-cells: show;
+      tr {
+        &:first-child td {
+          border-top: 0;
+        }
+        &:last-child td {
+          border-bottom: 0;
+        }
+        td {
+          &.w180 {
+            width: 180px;
+            text-align: center;
+          }
+          &>div {
+              width: 100%;
+              overflow-wrap: anywhere;
+          }
+        }
+      }
+    }
+  }
+}

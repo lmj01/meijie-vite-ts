@@ -1,7 +1,7 @@
 export interface State {
     molar: { left: number, right: number };
     spacing: { left: number, right: number };
-    mesioDistal: { left: Array<number>, right: Array<number> };
+    mesioDistal: LeftAndRightCode;
     complaints: CodesWithDescribe;
     remote: CodesWithDescribe;
     dentalArch: number;
@@ -12,7 +12,12 @@ export interface State {
     midline: number;
     specialDescribe: string;
     overbite: CodesWithDescribe;
+    crowd: Array<number>;
 }
+export interface LeftAndRightCode { 
+    left: Array<number>,
+    right: Array<number>,
+};
 export interface TwoCodeOption {
     left: boolean,
     code: number,
@@ -29,6 +34,11 @@ export interface CodesWithDescribe {
     code: Array<number>,
     describe: string,
 }
+export interface CrowdOption {
+    child: boolean,
+    left: boolean,
+    codes: Array<number>,
+}
 const state: State = {
     // 默认数据
     molar: { left: 104, right: 204 }, // 现磨牙关系
@@ -43,12 +53,14 @@ const state: State = {
     anteriorEdge2Edge: [300], // 前牙对刃𬌗
     posteriorCrossbite: 300, // 后牙
     midline: 100, // 中线
+    crowd: [10000], // 拥挤    
     specialDescribe: '', // 特殊说明
     // 测试数据
     // complaints: { code: [1,9], describe: 'test' }, // 牙弓
     // mesioDistal: { left: [1501, 1502], right: [2600] }, // 矢状向关系
     // overbite: { code: [4201], describe: ''}, // 覆𬌗
     // overbite: { code: [4400], describe: 'sdfs'}, // 覆𬌗
+    // crowd: [21102, 21202, 21302, 21502, 22103, 22203, 22303, 22503, 21401, 21402, 22401, 22402], // 拥挤   
 }
 
 const getters = {
@@ -63,7 +75,8 @@ const getters = {
             if (left) return state.spacing.left;
             return state.spacing.right;
         }
-    },
+    },    
+    crowd: (state: State) => state.crowd,
     mesioDistal: (state: State) => {
         return (left: boolean) => {
             if (left) return state.mesioDistal.left;
@@ -153,6 +166,11 @@ const mutations = {
     setAnterior: (state: State, ao: AnteriorOption) => {
         if (ao.crossbite) state.anteriorCrossbite = ao.codes;
         else state.anteriorEdge2Edge = ao.codes;
+    },
+    setCrowd: (state: State, code: Array<number>) => {
+        if (Array.isArray(code)) {
+            state.crowd = code;
+        } else throw 'only support code array';
     },
 }
 

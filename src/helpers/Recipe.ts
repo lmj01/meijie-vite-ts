@@ -46,3 +46,7 @@ export function midline() {
 export function remote() {
     return Data.remote;
 }
+
+export function crowd() {
+    return Data.crowd;
+}

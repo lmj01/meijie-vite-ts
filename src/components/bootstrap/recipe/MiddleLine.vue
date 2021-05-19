@@ -1,57 +1,35 @@
 <template>
-    <div class="mb-3 row">
+    <div class="mx-0 my-2 row">
         <label for="" class="col-sm-2 col-form-label">中线</label>
         <div class="col-sm-10">
-            <div class="btn-group" role="group">
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[0]" :code="data[0].code">
-                <label class="btn btn-outline-primary" :for="ud.ids[0]">{{data[0].name}}</label>
-
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[1]" :code="data[1].code">
-                <label class="btn btn-outline-primary" :for="ud.ids[1]">{{data[1].name}}</label>
-
-                <input type="radio" class="btn-check" :name="ud.type" :id="ud.ids[2]" :code="data[2].code">
-                <label class="btn btn-outline-primary" :for="ud.ids[2]">{{data[2].name}}</label>
-            </div>
+            <SelectSingle name="Midline" :value="data" :code="ud.code" @code="updateSingleCode" />
         </div>
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, reactive, onMounted, getCurrentInstance } from 'vue'
+import { ref, defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
+import SelectSingle from './SelectSingle.vue'
 import { midline } from '@/helpers/Recipe'
 export default defineComponent({
     name: 'MiddleLine',
+    components: {
+        SelectSingle,
+    },
     setup(props) {
         const store = useStore()
         const ud = reactive({
-            sel: store.getters['recipe/midline'],
-            type: 'brTypeMidline',
-            ids: [],
+            code: store.getters['recipe/midline'],
         })
         const data = midline();
-        if (data) {
-            data.forEach((e) => {
-                ud.ids.push(`brMidline${e.code}`)
-            })
+        const updateSingleCode = (code) => {
+            ud.code = code;
+            store.commit('recipe/setMidline', ud.code);
         }
-        onMounted(() => {
-            const ctx = getCurrentInstance()
-            const elInputs = ctx.ctx.$el.querySelectorAll('input[type="radio"]')
-            elInputs.forEach((input: HTMLElement) => {
-                if (parseInt(input.getAttribute('code'), 10) == ud.sel) {
-                    input.setAttribute('checked', 'checked');
-                }
-                input.addEventListener('click', (event)=>{
-                    const idInput = event.target.id;
-                    const code = parseInt(idInput.match(/\d+/)[0], 10)
-                    ud.sel = code;
-                    store.commit('recipe/setMidline', ud.sel);
-                })
-            })
-        })
         return {
             data,
             ud,
+            updateSingleCode,
         }
     },
 })

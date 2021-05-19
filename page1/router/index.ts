@@ -50,7 +50,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (import.meta.env.DEV) {
-        console.log('before router', to, from);
+        console.log(`-routers to-${to.fullPath}- and from-${from.fullPath}-`);
     }
     next();
 })

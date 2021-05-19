@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-3 row">
+    <div class="mx-0 my-2 row">
         <label for="" class="col-sm-2 col-form-label">{{data.name}}</label>
         <div class="col-sm-10 d-flex">
             <select v-model="ud.selFirst" class="col form-select" @change="updateSelectLevel(1)">

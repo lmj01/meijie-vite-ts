@@ -26,7 +26,7 @@ export default defineComponent({
     setup(props, ctx) {
         const myDropdown = ref(null);
         const ud = reactive({
-            id: `dd${Date.now()}`,
+            id: `${Date.now()}`,
             sel: [],
             selItem: [],
         });        

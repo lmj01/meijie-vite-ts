@@ -49,5 +49,7 @@ const currentConfig: UserConfig = {
   }
 }
 
-export default defineConfig(currentConfig)
-
+export default defineConfig(({mode}) => {
+  console.log('-mode-', mode)
+  return currentConfig
+})

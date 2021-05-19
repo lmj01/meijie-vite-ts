@@ -1,8 +1,12 @@
 <template>
     <div class="mx-0 my-2 row">
-        <label for="" class="col-sm-2 col-form-label">特殊说明</label>
+        <label for="" class="col-sm-2 col-form-label">{{name}}</label>
         <div class="col-sm-10">
-            <textarea class="form-control" v-model="ud.describe" rows="3" @input="updateTextarea" />
+            <div class="mq-teeth">
+                <div class="teeth-row">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -10,11 +14,14 @@
 import { ref, defineComponent, reactive, onMounted, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 export default defineComponent({
-    name: 'SpecialDescribe',
+    name: 'Teeth',
+    props: {
+        name: String,
+    },
     setup(props) {
         const store = useStore()
         const ud = reactive({
-            describe: store.getters['recipe/specialDescribe'],
+            describe: '',
         })
         const updateTextarea = () => {
             store.commit('recipe/setSpecialDescribe', ud.describe);
