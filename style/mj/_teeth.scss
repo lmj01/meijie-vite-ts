@@ -1,0 +1,443 @@
+// teeth 
+.recipe-tooth {
+    &:not(input) {
+        border: 1px solid;       
+    }
+    &:not(button) {
+        background: white;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+$toothDisable: gray;
+$toothSelected: $primary;
+$toothDefaultBorder: rgba(0,0,0,0.2);
+$toothDefault: rgba(0,0,0,0.7);
+$toothLineColor: #c4c4c4;
+span.normal {
+    font-size: smaller;
+    font-style: revert;
+    font-family: math;
+    color: $toothDefault;
+}
+span.missing {
+    font-size: smaller;
+    font-style: revert;
+    font-family: math;
+    color: white;
+}
+button.missing {
+    font-size: smaller;
+    font-style: revert;
+    font-family: math;
+    color: white;
+    span.missing {
+        font-size: smaller;
+    font-style: revert;
+    font-family: math;
+    color: white;
+    }
+}
+$tooth-size: 32px;
+$tooth-offset: 6px;
+.tooth-info {
+    background-image: url('../../src/assets/teeth-number.png');
+    background-repeat: no-repeat;
+    width: $tooth-size;
+    height: $tooth-size;    
+    transform: scale(0.6);
+}
+.tooth-rt {
+    position: absolute;
+    top: -$tooth-offset;
+    right: -$tooth-offset;
+    transform: scale(0.5);
+}
+.tooth-lb {
+    position: absolute;
+    top: $tooth-offset;
+    left: -$tooth-offset;
+    transform: scale(0.5);
+}
+.tooth-ext {
+    position: absolute;
+    top: $tooth-offset;
+    left: -$tooth-offset+4px;
+    transform: scale(0.8);
+}
+.tooth-common {
+    width: $tooth-size;
+    height: $tooth-size;
+    border-radius: $br-size;
+    &.white {
+        border: 1px solid #4d4d4d;
+    }
+    &.black {
+        background-color: #4d4d4d;
+    }
+    &.blue {
+        border: 1px solid $primary;
+    }
+    &>div {
+        @extend .tooth-info;
+        &.t11 {
+            background-position: -0px -0px;
+            &.black {
+                background-position-y: -160px;
+            }     
+            &.blue {
+                background-position-y: -320px;
+            }                                       
+        }
+        &.t12 {
+            background-position: -32px -0px;
+            &.black {
+                background-position-y: -160px;
+            }     
+            &.blue {
+                background-position-y: -320px;
+            }
+        }
+        &.t13 {
+            background-position: -64px -0px;
+            &.black {
+                background-position-y: -160px;
+            }     
+            &.blue {
+                background-position-y: -320px;
+            }
+        }
+        &.t14 {
+            background-position: -96px -0px;
+            &.black {
+                background-position-y: -160px; 
+            }        
+            &.blue {
+                background-position-y: -320px;
+            }
+        }
+        &.t15 {
+            background-position: -128px -0px;   
+            &.black {
+                background-position-y: -160px;
+            }        
+            &.blue {
+                background-position-y: -320px;
+            }
+        }
+        &.t16 {
+            background-position: -160px -0px;   
+            &.black {
+                background-position-y: -160px;  
+            }     
+            &.blue {
+                background-position-y: -320px;
+            }   
+        }
+        &.t17 {
+            background-position: -192px -0px;   
+            &.black {
+                background-position-y: -160px;
+            }     
+            &.blue {
+                background-position-y: -320px;  
+            }   
+        }
+        &.t18 {
+            background-position: -224px -0px;   
+            &.black {
+                background-position-y: -160px;  
+            }        
+            &.blue {
+                background-position-y: -320px;
+            }
+        }                    
+        &.t21 {
+            background-position: -0px -32px;   
+            &.black {
+                background-position-y: -192px;    
+            }           
+            &.blue {
+                background-position-y: -352px;    
+            }
+        }                    
+        &.t22 {
+            background-position: -32px -32px;   
+            &.black {
+                background-position-y: -192px;        
+            }           
+            &.blue {
+                background-position-y: -352px;        
+            }         
+        }                    
+        &.t23 {
+            background-position: -64px -32px;                              
+            &.black {
+                background-position-y: -192px;        
+            }                 
+            &.blue {
+                background-position-y: -352px;     
+            }
+        }                    
+        &.t24 {
+            background-position: -96px -32px;      
+            &.black {
+                background-position-y: -192px;        
+            }                 
+            &.blue {
+                background-position-y: -352px;      
+            }
+        }                    
+        &.t25 {
+            background-position: -128px -32px;      
+            &.black {
+                background-position-y: -192px;    
+            }          
+            &.blue {
+                background-position-y: -352px;        
+            }
+        }                    
+        &.t26 {
+            background-position: -160px -32px;      
+            &.black {
+                background-position-y: -192px;        
+            }                 
+            &.blue {
+                background-position-y: -352px;    
+            }
+        }                    
+        &.t27 {
+            background-position: -192px -32px;      
+            &.black {
+                background-position-y: -192px;        
+            }                 
+            &.blue {
+                background-position-y: -352px;    
+            }
+        }                    
+        &.t28 {
+            background-position: -224px -32px;      
+            &.black {
+                background-position-y: -192px;        
+            }                 
+            &.blue {
+                background-position-y: -352px;    
+            }
+        }                    
+        &.t31 {
+            background-position: -0px -64px;   
+            &.black {
+                background-position-y: -224px;    
+            }          
+            &.blue {
+                background-position-y: -384px;    
+            }
+        }                    
+        &.t32 {
+            background-position: -32px -64px;   
+            &.black {
+                background-position-y: -224px;        
+            }          
+            &.blue {
+                background-position-y: -384px;        
+            }            
+        }                    
+        &.t33 {
+            background-position: -64px -64px;      
+            &.black {
+                background-position-y: -224px;      
+            }                   
+            &.blue {
+                background-position-y: -384px;        
+            }
+        }                    
+        &.t34 {
+            background-position: -96px -64px;      
+            &.black {
+                background-position-y: -224px;        
+            }             
+            &.blue {
+                background-position-y: -384px;    
+            }      
+        }                    
+        &.t35 {
+            background-position: -128px -64px;     
+            &.black {
+                background-position-y: -224px;     
+            }                    
+            &.blue {
+                background-position-y: -384px;        
+            }
+        }                    
+        &.t36 {
+            background-position: -160px -64px;
+            &.black {
+                background-position-y: -224px;    
+            }                   
+            &.blue {
+                background-position-y: -384px;    
+            }
+        }                    
+        &.t37 {
+            background-position: -192px -64px;     
+            &.black {
+                background-position-y: -224px;    
+            }                   
+            &.blue {
+                background-position-y: -384px;    
+            }          
+        }                    
+        &.t38 {
+            background-position: -224px -64px;                              
+            &.black {
+                background-position-y: -224px;     
+            }                   
+            &.blue {
+                background-position-y: -384px;    
+            }         
+        }                    
+        &.t41 {
+            background-position: -0px -96px;    
+            &.black {
+                background-position-y: -256px;    
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t42 {
+            background-position: -32px -96px;    
+            &.black {
+                background-position-y: -256px;    
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }              
+        }                    
+        &.t43 {
+            background-position: -64px -96px;       
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t44 {
+            background-position: -96px -96px;                               
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t45 {
+            background-position: -128px -96px;                               
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t46 {
+            background-position: -160px -96px;       
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t47 {
+            background-position: -192px -96px;       
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }           
+        }                    
+        &.t48 {
+            background-position: -224px -96px;                              
+            &.black {
+                background-position-y: -256px;
+            }                   
+            &.blue {
+                background-position-y: -416px;    
+            }            
+        }
+        &.rt {
+            @extend .tooth-rt;    
+        }
+        &.lb {
+            @extend .tooth-lb;    
+        }
+    }
+    .missing {
+        @extend .tooth-info;
+        @extend .tooth-lb;
+        background-position: -256px -0px;            
+    }
+    .lock {
+        @extend .tooth-info;
+        @extend .tooth-lb;
+        // background-position: -256px -32px;            
+        background-position: -256px -192px;            
+    }
+    .ext {
+        @extend .tooth-info;
+        @extend .tooth-ext;
+        background-position: -256px -384px;            
+    }
+    .number {
+        width: 30px;
+        position: absolute;
+        height: 1.2rem;
+        &.upper {
+            top: -20px;        
+        }
+        &.lower {
+            bottom: -20px;        
+        }
+        &.disabled {
+            background-color: gray;
+        }
+        left: 25px;
+        border-radius: 4px;            
+        font-size: smaller;
+        font-style: revert;
+        font-family: math;
+        border-style: none;
+        text-align: center;             
+        border: 1px solid $toothDefaultBorder;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+.mq-teeth {
+    position: relative;
+    .tooth {
+        position: relative;
+        @extend .tooth-common;
+    }
+    .teeth-vertical {
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        border-left: 1px dashed $toothLineColor;
+    }
+    .teeth-horizontal {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 50%;
+        border-bottom: 1px dashed $toothLineColor;
+    }
+}

@@ -12,7 +12,7 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, reactive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
 import { spacing } from '@/helpers/Recipe'
 export default defineComponent({

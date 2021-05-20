@@ -27,43 +27,86 @@
         <div class="row">
             <Pagination :pageTotal="ud.total" @page="updateNewPage" />
         </div>
-        <p>每页个数{{ud.count}}, 总数有{{ud.total2}}</p>
+        <div>
+            <p>每页个数{{ud.count}}, 总数有{{ud.total2}}</p>
+            <form class="row">
+                <div class="col-auto">
+                    <input class="form-control" list="dataSearchOptions" id="sss" />
+                    <datalist id="dataSearchOptions">
+                        <option value="San Francisco" />
+                        <option value="New York" />
+                        <option value="Seattle" />
+                        <option value="Los Angeles" />
+                        <option value="Chicago" />
+                    </datalist>
+                </div>
+            </form>
+        </div>
         <div class="table-component">
             <div class="table-container">
                 <div class="table-header-container">
                     <table id="tHead">
-                        <tr>
-                            <td :class="ud.cls">编号</td>
-                            <td>姓名</td>
-                            <td>Tonnage</td>
-                            <td>Tonnage</td>
-                            <td>操作</td>
-                        </tr>
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col v-if="ud.scroll" width="17px">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td :class="ud.cls">
+                                    <div>编号</div>
+                                </td>
+                                <td>
+                                    <div>姓名</div>
+                                </td>
+                                <td>
+                                    <div>Tonnage</div>
+                                </td>
+                                <td>
+                                    <div>Tonnage</div>
+                                </td>
+                                <td>
+                                    <div>操作</div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
-                <div class="table-body-container">
-                    <table id="tBody">
-                        <tr v-for="item in ud.data" :key="item.id">
-                            <td :class="ud.cls">
-                                <div>{{item.id}}</div>
-                            </td>
-                            <td>
-                                <div>{{item.name}}</div>
-                            </td>
-                            <td>
-                                <div>{{Date.now()}}</div>
-                            </td>
-                            <td>
-                                <div>{{item.describe}}
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <button type="button" class="btn btn-primary" @click="openDialogCommon(0, '操作1', item)">操作1</button>
-                                    <button type="button" class="btn btn-primary" @click="openDialogCommon(1, '操作2', item)">操作2</button>    
-                                </div>
-                            </td>
-                        </tr>
+                <div id="idtBodyContainer" class="table-body-container">
+                    <table id="tBody" v-scroll>
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr v-for="item in ud.data" :key="item.id">
+                                <td :class="ud.cls">
+                                    <div>{{item.id}}</div>
+                                </td>
+                                <td>
+                                    <div>{{item.name}}</div>
+                                </td>
+                                <td>
+                                    <div>{{Date.now()}}</div>
+                                </td>
+                                <td>
+                                    <div>{{item.describe}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button type="button" class="btn btn-primary" @click="openDialogCommon(0, '操作1', item)">操作1</button>
+                                        <button type="button" class="btn btn-primary" @click="openDialogCommon(1, '操作2', item)">操作2</button>    
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -94,7 +137,7 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, onMounted, reactive } from 'vue'
+import { ref, defineComponent, onMounted, reactive, watch } from 'vue'
 import bootstrapModal from 'bootstrap/js/src/modal'
 import bootstrapDropdown from 'bootstrap/js/src/dropdown'
 import Pagination from './Pagination.vue'
@@ -117,6 +160,8 @@ export default defineComponent({
             modal: null,
             dropdown: null,
             cls: 'w180',
+            scroll: false,
+            elTable: null,
         })
         // 模拟数据
         const { fetchDataType1 } = testData();
@@ -124,8 +169,15 @@ export default defineComponent({
         onMounted(()=>{
             ud.modal = new bootstrapModal(document.getElementById('exampleModal'), {
                 keyboard: false
-            })
+            })            
             ud.dropdown = new bootstrapDropdown(document.getElementById('dropdownMenuButton1'), {})
+            window.addEventListener('resize', (event)=> {
+                console.log('window scroll event', event);
+            })
+            ud.elTable = document.getElementById('idtBodyContainer')
+            ud.elTable.addEventListener('resize', (event)=>{
+                console.log('table scroll event', event)
+            })
         })
         // 初始测试数据
         const getPageData = () => {
@@ -155,6 +207,12 @@ export default defineComponent({
             ud.total = Math.ceil(random100)
             console.log('-random total-', random, random100, ud.total)
         }
+        watch(
+            () => ud.elTable,
+            (vnew, vold) => {
+                console.log('watch table', vnew, vold)
+            }
+        )
         return {
             ud,
             updateNewPage,

@@ -19,9 +19,10 @@ export function testData() {
     const fetchDataType1 = (count:number) => {
       const data: TestDataOption[] = [];
       if (typeof count !== 'number') throw 'count must is integer number'
+      const startId = Math.ceil(Math.random() * 10000);
       for (let i = 0; i < count; i++) {
         data.push({
-          id: Math.ceil(Math.random() * 10000),
+          id: startId + i,
           name: `ss${i+1}`,
           describe: `describe--${randomStr(i+1)}`,
         })

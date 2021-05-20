@@ -1,7 +1,9 @@
 <template>
     <div class="frame-b">
         <p>Frame B</p>
-        <Teeth name="缺失牙齿" />
+        <Teeth name="missing" label="缺失牙齿" />
+        <Teeth name="restrictMove" label="不可移动牙齿" />
+        <Teeth name="restrictAttach" label="不加附件牙齿" />
         <Crowd />
         <SpecialDescribe />
         <Remote />

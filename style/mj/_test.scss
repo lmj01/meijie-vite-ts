@@ -27,6 +27,7 @@
 $table-search-height: 0px;
 $table-pagination-height: 50px;
 $table-header-height: 50px;
+$table-border-color: lightgray;
 .table-component {
     width: 1200px;
     height: 400px;
@@ -43,16 +44,16 @@ $table-header-height: 50px;
   .table-container {
     width: 100%;
     height: calc(100% - #{$table-search-height + $table-pagination-height});
-    border: 1px solid black;
     .table-header-container {
-      background: #CC3600;
-      color: white;
+      color: $table-border-color;
       font-weight: bold;
       height: $table-header-height;
+      scrollbar-width: thin;
     }
     .table-body-container {
-      height: calc(100% - #{$table-header-height});
-      overflow-y: scroll;
+        height: calc(100% - #{$table-header-height});
+        overflow: auto;
+        scrollbar-width: thin;
     }
     table {
       width: 100%;
@@ -61,22 +62,19 @@ $table-header-height: 50px;
       }
       border-collapse: collapse;
       table-layout: fixed;
-    //   table-layout: auto;
       empty-cells: show;
+      border-spacing: 0;
       tr {
-        &:first-child td {
-          border-top: 0;
-        }
-        &:last-child td {
-          border-bottom: 0;
-        }
+        border: 1px solid $table-border-color;
         td {
-          &.w180 {
-            width: 180px;
-            text-align: center;
-          }
+            border-right: 1px solid $table-border-color;
+            &.w180 {
+                width: 180px;
+                text-align: center;
+            }
           &>div {
               width: 100%;
+              text-align: center;
               overflow-wrap: anywhere;
           }
         }

@@ -7,7 +7,7 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, reactive, onMounted, getCurrentInstance } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
 export default defineComponent({
     name: 'SpecialDescribe',

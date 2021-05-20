@@ -12,7 +12,7 @@
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
-  --bs-primary: #0d6efd;
+  --bs-primary: #ac00ac;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -197,12 +197,12 @@ sup {
 }
 
 a {
-  color: #0d6efd;
+  color: #ac00ac;
   text-decoration: underline;
 }
 
 a:hover {
-  color: #0a58ca;
+  color: #8a008a;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -1733,7 +1733,7 @@ progress {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #0d6efd;
+  color: #ac00ac;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -1745,7 +1745,7 @@ progress {
 }
 
 .nav-link:hover, .nav-link:focus {
-  color: #0a58ca;
+  color: #8a008a;
 }
 
 .nav-link.disabled {
@@ -1799,7 +1799,7 @@ progress {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #0d6efd;
+  background-color: #ac00ac;
 }
 
 .nav-fill > .nav-link,
@@ -1891,9 +1891,9 @@ progress {
 .form-control:focus {
   color: #212529;
   background-color: #fff;
-  border-color: #86b7fe;
+  border-color: #d680d6;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -2066,9 +2066,9 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-  border-color: #86b7fe;
+  border-color: #d680d6;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .form-select[multiple], .form-select[size]:not([size="1"]) {
@@ -2138,14 +2138,14 @@ textarea.form-control-lg {
 }
 
 .form-check-input:focus {
-  border-color: #86b7fe;
+  border-color: #d680d6;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .form-check-input:checked {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .form-check-input:checked[type="checkbox"] {
@@ -2157,8 +2157,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input[type="checkbox"]:indeterminate {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 
@@ -2192,7 +2192,7 @@ textarea.form-control-lg {
 }
 
 .form-switch .form-check-input:focus {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23d680d6'/%3e%3c/svg%3e");
 }
 
 .form-switch .form-check-input:checked {
@@ -2230,11 +2230,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .form-range::-moz-focus-outer {
@@ -2245,7 +2245,7 @@ textarea.form-control-lg {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #0d6efd;
+  background-color: #ac00ac;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2259,7 +2259,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-webkit-slider-thumb:active {
-  background-color: #b6d4fe;
+  background-color: #e6b3e6;
 }
 
 .form-range::-webkit-slider-runnable-track {
@@ -2275,7 +2275,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #0d6efd;
+  background-color: #ac00ac;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2289,7 +2289,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-moz-range-thumb:active {
-  background-color: #b6d4fe;
+  background-color: #e6b3e6;
 }
 
 .form-range::-moz-range-track {
@@ -2669,7 +2669,7 @@ textarea.form-control-lg {
 
 .btn-check:focus + .btn, .btn:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .btn:disabled, .btn.disabled,
@@ -2680,41 +2680,41 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
+  background-color: #920092;
+  border-color: #8a008a;
 }
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
-  background-color: #0b5ed7;
-  border-color: #0a58ca;
-  box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+  background-color: #920092;
+  border-color: #8a008a;
+  box-shadow: 0 0 0 0.25rem rgba(184, 38, 184, 0.5);
 }
 
 .btn-check:checked + .btn-primary,
 .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0a58ca;
-  border-color: #0a53be;
+  background-color: #8a008a;
+  border-color: #810081;
 }
 
 .btn-check:checked + .btn-primary:focus,
 .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(184, 38, 184, 0.5);
 }
 
 .btn-primary:disabled, .btn-primary.disabled {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .btn-secondary {
@@ -2991,34 +2991,34 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  color: #0d6efd;
-  border-color: #0d6efd;
+  color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.5);
 }
 
 .btn-check:checked + .btn-outline-primary,
 .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .btn-check:checked + .btn-outline-primary:focus,
 .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.5);
 }
 
 .btn-outline-primary:disabled, .btn-outline-primary.disabled {
-  color: #0d6efd;
+  color: #ac00ac;
   background-color: transparent;
 }
 
@@ -3248,12 +3248,12 @@ fieldset:disabled .btn {
 
 .btn-link {
   font-weight: 400;
-  color: #0d6efd;
+  color: #ac00ac;
   text-decoration: underline;
 }
 
 .btn-link:hover {
-  color: #0a58ca;
+  color: #8a008a;
 }
 
 .btn-link:disabled, .btn-link.disabled {
@@ -3710,7 +3710,7 @@ fieldset:disabled .btn {
 
 .btn-close:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
   opacity: 1;
 }
 
@@ -3991,7 +3991,7 @@ fieldset:disabled .btn {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #0d6efd;
+  background-color: #ac00ac;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4036,7 +4036,7 @@ fieldset:disabled .btn {
 
 .dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #0d6efd;
+  background-color: #ac00ac;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled {
@@ -4064,7 +4064,7 @@ fieldset:disabled .btn {
 .page-link {
   position: relative;
   display: block;
-  color: #0d6efd;
+  color: #ac00ac;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -4079,17 +4079,17 @@ fieldset:disabled .btn {
 
 .page-link:hover {
   z-index: 2;
-  color: #0a58ca;
+  color: #8a008a;
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
 
 .page-link:focus {
   z-index: 3;
-  color: #0a58ca;
+  color: #8a008a;
   background-color: #e9ecef;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(172, 0, 172, 0.25);
 }
 
 .page-item:not(:first-child) .page-link {
@@ -4099,8 +4099,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #ac00ac;
+  border-color: #ac00ac;
 }
 
 .page-item.disabled .page-link {
@@ -4383,7 +4383,7 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-  border-color: #0d6efd !important;
+  border-color: #ac00ac !important;
 }
 
 .border-secondary {
@@ -5212,7 +5212,7 @@ fieldset:disabled .btn {
 
 /* rtl:end:remove */
 .text-primary {
-  color: #0d6efd !important;
+  color: #ac00ac !important;
 }
 
 .text-secondary {
@@ -5268,7 +5268,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  background-color: #0d6efd !important;
+  background-color: #ac00ac !important;
 }
 
 .bg-secondary {
@@ -8007,19 +8007,19 @@ body #app {
 .table-component .table-container {
   width: 100%;
   height: calc(100% - 50px);
-  border: 1px solid black;
 }
 
 .table-component .table-container .table-header-container {
-  background: #CC3600;
-  color: white;
+  color: lightgray;
   font-weight: bold;
   height: 50px;
+  scrollbar-width: thin;
 }
 
 .table-component .table-container .table-body-container {
   height: calc(100% - 50px);
-  overflow-y: scroll;
+  overflow: auto;
+  scrollbar-width: thin;
 }
 
 .table-component .table-container table {
@@ -8027,18 +8027,19 @@ body #app {
   border-collapse: collapse;
   table-layout: fixed;
   empty-cells: show;
+  border-spacing: 0;
 }
 
 .table-component .table-container table#tHead {
   height: 100%;
 }
 
-.table-component .table-container table tr:first-child td {
-  border-top: 0;
+.table-component .table-container table tr {
+  border: 1px solid lightgray;
 }
 
-.table-component .table-container table tr:last-child td {
-  border-bottom: 0;
+.table-component .table-container table tr td {
+  border-right: 1px solid lightgray;
 }
 
 .table-component .table-container table tr td.w180 {
@@ -8048,6 +8049,7 @@ body #app {
 
 .table-component .table-container table tr td > div {
   width: 100%;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 
@@ -8059,6 +8061,545 @@ body #app {
 
 .frame-b {
   overflow: auto;
+}
+
+.recipe-tooth:not(input) {
+  border: 1px solid;
+}
+
+.recipe-tooth:not(button) {
+  background: white;
+}
+
+.recipe-tooth:focus {
+  outline: none;
+}
+
+span.normal {
+  font-size: smaller;
+  font-style: revert;
+  font-family: math;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+span.missing {
+  font-size: smaller;
+  font-style: revert;
+  font-family: math;
+  color: white;
+}
+
+button.missing {
+  font-size: smaller;
+  font-style: revert;
+  font-family: math;
+  color: white;
+}
+
+button.missing span.missing {
+  font-size: smaller;
+  font-style: revert;
+  font-family: math;
+  color: white;
+}
+
+.tooth-info, .tooth-common > div, .mq-teeth .tooth > div, .tooth-common .missing, .mq-teeth .tooth .missing, .tooth-common .lock, .mq-teeth .tooth .lock, .tooth-common .ext, .mq-teeth .tooth .ext {
+  background-image: url("../../src/assets/teeth-number.png");
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  transform: scale(0.6);
+}
+
+.tooth-rt, .tooth-common > div.rt, .mq-teeth .tooth > div.rt {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  transform: scale(0.5);
+}
+
+.tooth-lb, .tooth-common > div.lb, .mq-teeth .tooth > div.lb, .tooth-common .missing, .mq-teeth .tooth .missing, .tooth-common .lock, .mq-teeth .tooth .lock {
+  position: absolute;
+  top: 6px;
+  left: -6px;
+  transform: scale(0.5);
+}
+
+.tooth-ext, .tooth-common .ext, .mq-teeth .tooth .ext {
+  position: absolute;
+  top: 6px;
+  left: -2px;
+  transform: scale(0.8);
+}
+
+.tooth-common, .mq-teeth .tooth {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.tooth-common.white, .mq-teeth .white.tooth {
+  border: 1px solid #4d4d4d;
+}
+
+.tooth-common.black, .mq-teeth .black.tooth {
+  background-color: #4d4d4d;
+}
+
+.tooth-common.blue, .mq-teeth .blue.tooth {
+  border: 1px solid #ac00ac;
+}
+
+.tooth-common > div.t11, .mq-teeth .tooth > div.t11 {
+  background-position: -0px -0px;
+}
+
+.tooth-common > div.t11.black, .mq-teeth .tooth > div.t11.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t11.blue, .mq-teeth .tooth > div.t11.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t12, .mq-teeth .tooth > div.t12 {
+  background-position: -32px -0px;
+}
+
+.tooth-common > div.t12.black, .mq-teeth .tooth > div.t12.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t12.blue, .mq-teeth .tooth > div.t12.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t13, .mq-teeth .tooth > div.t13 {
+  background-position: -64px -0px;
+}
+
+.tooth-common > div.t13.black, .mq-teeth .tooth > div.t13.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t13.blue, .mq-teeth .tooth > div.t13.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t14, .mq-teeth .tooth > div.t14 {
+  background-position: -96px -0px;
+}
+
+.tooth-common > div.t14.black, .mq-teeth .tooth > div.t14.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t14.blue, .mq-teeth .tooth > div.t14.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t15, .mq-teeth .tooth > div.t15 {
+  background-position: -128px -0px;
+}
+
+.tooth-common > div.t15.black, .mq-teeth .tooth > div.t15.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t15.blue, .mq-teeth .tooth > div.t15.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t16, .mq-teeth .tooth > div.t16 {
+  background-position: -160px -0px;
+}
+
+.tooth-common > div.t16.black, .mq-teeth .tooth > div.t16.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t16.blue, .mq-teeth .tooth > div.t16.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t17, .mq-teeth .tooth > div.t17 {
+  background-position: -192px -0px;
+}
+
+.tooth-common > div.t17.black, .mq-teeth .tooth > div.t17.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t17.blue, .mq-teeth .tooth > div.t17.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t18, .mq-teeth .tooth > div.t18 {
+  background-position: -224px -0px;
+}
+
+.tooth-common > div.t18.black, .mq-teeth .tooth > div.t18.black {
+  background-position-y: -160px;
+}
+
+.tooth-common > div.t18.blue, .mq-teeth .tooth > div.t18.blue {
+  background-position-y: -320px;
+}
+
+.tooth-common > div.t21, .mq-teeth .tooth > div.t21 {
+  background-position: -0px -32px;
+}
+
+.tooth-common > div.t21.black, .mq-teeth .tooth > div.t21.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t21.blue, .mq-teeth .tooth > div.t21.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t22, .mq-teeth .tooth > div.t22 {
+  background-position: -32px -32px;
+}
+
+.tooth-common > div.t22.black, .mq-teeth .tooth > div.t22.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t22.blue, .mq-teeth .tooth > div.t22.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t23, .mq-teeth .tooth > div.t23 {
+  background-position: -64px -32px;
+}
+
+.tooth-common > div.t23.black, .mq-teeth .tooth > div.t23.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t23.blue, .mq-teeth .tooth > div.t23.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t24, .mq-teeth .tooth > div.t24 {
+  background-position: -96px -32px;
+}
+
+.tooth-common > div.t24.black, .mq-teeth .tooth > div.t24.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t24.blue, .mq-teeth .tooth > div.t24.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t25, .mq-teeth .tooth > div.t25 {
+  background-position: -128px -32px;
+}
+
+.tooth-common > div.t25.black, .mq-teeth .tooth > div.t25.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t25.blue, .mq-teeth .tooth > div.t25.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t26, .mq-teeth .tooth > div.t26 {
+  background-position: -160px -32px;
+}
+
+.tooth-common > div.t26.black, .mq-teeth .tooth > div.t26.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t26.blue, .mq-teeth .tooth > div.t26.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t27, .mq-teeth .tooth > div.t27 {
+  background-position: -192px -32px;
+}
+
+.tooth-common > div.t27.black, .mq-teeth .tooth > div.t27.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t27.blue, .mq-teeth .tooth > div.t27.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t28, .mq-teeth .tooth > div.t28 {
+  background-position: -224px -32px;
+}
+
+.tooth-common > div.t28.black, .mq-teeth .tooth > div.t28.black {
+  background-position-y: -192px;
+}
+
+.tooth-common > div.t28.blue, .mq-teeth .tooth > div.t28.blue {
+  background-position-y: -352px;
+}
+
+.tooth-common > div.t31, .mq-teeth .tooth > div.t31 {
+  background-position: -0px -64px;
+}
+
+.tooth-common > div.t31.black, .mq-teeth .tooth > div.t31.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t31.blue, .mq-teeth .tooth > div.t31.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t32, .mq-teeth .tooth > div.t32 {
+  background-position: -32px -64px;
+}
+
+.tooth-common > div.t32.black, .mq-teeth .tooth > div.t32.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t32.blue, .mq-teeth .tooth > div.t32.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t33, .mq-teeth .tooth > div.t33 {
+  background-position: -64px -64px;
+}
+
+.tooth-common > div.t33.black, .mq-teeth .tooth > div.t33.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t33.blue, .mq-teeth .tooth > div.t33.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t34, .mq-teeth .tooth > div.t34 {
+  background-position: -96px -64px;
+}
+
+.tooth-common > div.t34.black, .mq-teeth .tooth > div.t34.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t34.blue, .mq-teeth .tooth > div.t34.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t35, .mq-teeth .tooth > div.t35 {
+  background-position: -128px -64px;
+}
+
+.tooth-common > div.t35.black, .mq-teeth .tooth > div.t35.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t35.blue, .mq-teeth .tooth > div.t35.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t36, .mq-teeth .tooth > div.t36 {
+  background-position: -160px -64px;
+}
+
+.tooth-common > div.t36.black, .mq-teeth .tooth > div.t36.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t36.blue, .mq-teeth .tooth > div.t36.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t37, .mq-teeth .tooth > div.t37 {
+  background-position: -192px -64px;
+}
+
+.tooth-common > div.t37.black, .mq-teeth .tooth > div.t37.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t37.blue, .mq-teeth .tooth > div.t37.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t38, .mq-teeth .tooth > div.t38 {
+  background-position: -224px -64px;
+}
+
+.tooth-common > div.t38.black, .mq-teeth .tooth > div.t38.black {
+  background-position-y: -224px;
+}
+
+.tooth-common > div.t38.blue, .mq-teeth .tooth > div.t38.blue {
+  background-position-y: -384px;
+}
+
+.tooth-common > div.t41, .mq-teeth .tooth > div.t41 {
+  background-position: -0px -96px;
+}
+
+.tooth-common > div.t41.black, .mq-teeth .tooth > div.t41.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t41.blue, .mq-teeth .tooth > div.t41.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t42, .mq-teeth .tooth > div.t42 {
+  background-position: -32px -96px;
+}
+
+.tooth-common > div.t42.black, .mq-teeth .tooth > div.t42.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t42.blue, .mq-teeth .tooth > div.t42.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t43, .mq-teeth .tooth > div.t43 {
+  background-position: -64px -96px;
+}
+
+.tooth-common > div.t43.black, .mq-teeth .tooth > div.t43.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t43.blue, .mq-teeth .tooth > div.t43.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t44, .mq-teeth .tooth > div.t44 {
+  background-position: -96px -96px;
+}
+
+.tooth-common > div.t44.black, .mq-teeth .tooth > div.t44.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t44.blue, .mq-teeth .tooth > div.t44.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t45, .mq-teeth .tooth > div.t45 {
+  background-position: -128px -96px;
+}
+
+.tooth-common > div.t45.black, .mq-teeth .tooth > div.t45.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t45.blue, .mq-teeth .tooth > div.t45.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t46, .mq-teeth .tooth > div.t46 {
+  background-position: -160px -96px;
+}
+
+.tooth-common > div.t46.black, .mq-teeth .tooth > div.t46.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t46.blue, .mq-teeth .tooth > div.t46.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t47, .mq-teeth .tooth > div.t47 {
+  background-position: -192px -96px;
+}
+
+.tooth-common > div.t47.black, .mq-teeth .tooth > div.t47.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t47.blue, .mq-teeth .tooth > div.t47.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common > div.t48, .mq-teeth .tooth > div.t48 {
+  background-position: -224px -96px;
+}
+
+.tooth-common > div.t48.black, .mq-teeth .tooth > div.t48.black {
+  background-position-y: -256px;
+}
+
+.tooth-common > div.t48.blue, .mq-teeth .tooth > div.t48.blue {
+  background-position-y: -416px;
+}
+
+.tooth-common .missing, .mq-teeth .tooth .missing {
+  background-position: -256px -0px;
+}
+
+.tooth-common .lock, .mq-teeth .tooth .lock {
+  background-position: -256px -192px;
+}
+
+.tooth-common .ext, .mq-teeth .tooth .ext {
+  background-position: -256px -384px;
+}
+
+.tooth-common .number, .mq-teeth .tooth .number {
+  width: 30px;
+  position: absolute;
+  height: 1.2rem;
+  left: 25px;
+  border-radius: 4px;
+  font-size: smaller;
+  font-style: revert;
+  font-family: math;
+  border-style: none;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tooth-common .number.upper, .mq-teeth .tooth .number.upper {
+  top: -20px;
+}
+
+.tooth-common .number.lower, .mq-teeth .tooth .number.lower {
+  bottom: -20px;
+}
+
+.tooth-common .number.disabled, .mq-teeth .tooth .number.disabled {
+  background-color: gray;
+}
+
+.tooth-common .number:focus, .mq-teeth .tooth .number:focus {
+  outline: none;
+}
+
+.mq-teeth {
+  position: relative;
+}
+
+.mq-teeth .tooth {
+  position: relative;
+}
+
+.mq-teeth .teeth-vertical {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  border-left: 1px dashed #c4c4c4;
+}
+
+.mq-teeth .teeth-horizontal {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 50%;
+  border-bottom: 1px dashed #c4c4c4;
 }
 
 /*# sourceMappingURL=mj.css.map */

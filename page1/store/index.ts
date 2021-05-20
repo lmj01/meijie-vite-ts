@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import moduleRecipe from './recipe'
+import moduleTeeth from './teeth'
 
 const store = createStore({
     state: {
@@ -9,6 +10,7 @@ const store = createStore({
     actions: {},
     modules: {
         recipe: moduleRecipe,
+        teeth: moduleTeeth,
     },
 })
 if (import.meta.env.DEV) {
