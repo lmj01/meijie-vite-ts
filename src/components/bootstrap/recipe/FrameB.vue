@@ -4,6 +4,8 @@
         <Teeth name="missing" label="缺失牙齿" />
         <Teeth name="restrictMove" label="不可移动牙齿" />
         <Teeth name="restrictAttach" label="不加附件牙齿" />
+        <Teeth name="extract" label="拔牙" />
+        <Teeth name="spacing" label="间隙" />
         <Crowd />
         <SpecialDescribe />
         <Remote />

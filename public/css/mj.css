@@ -8139,7 +8139,7 @@ button.missing span.missing {
 }
 
 .tooth-common.white, .mq-teeth .white.tooth {
-  border: 1px solid #4d4d4d;
+  border: 1px solid lightgray;
 }
 
 .tooth-common.black, .mq-teeth .black.tooth {
@@ -8578,6 +8578,10 @@ button.missing span.missing {
 
 .mq-teeth {
   position: relative;
+}
+
+.mq-teeth.spacing {
+  margin: 20px 0;
 }
 
 .mq-teeth .tooth {

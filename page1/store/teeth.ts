@@ -1,21 +1,28 @@
 const toothList = [
-    18, 17, 16, 15, 14, 13, 12, 11,
-    21, 22, 23, 24, 25, 26, 27, 28,
+    11, 12, 13, 14, 15, 16, 17, 18,
+    28, 27, 26, 25, 24, 23, 22, 21,
     48, 47, 46, 45, 44, 43, 42, 41,
     31, 32, 33, 34, 35, 36, 37, 38
 ]
-const typeList = ['', 'missing','restrictMove','restrictAttach','extract','spacing']
+export const toothTypeList = [
+    '', // 0
+    'missing',
+    'restrictMove', // 2
+    'restrictAttach',
+    'extract', // 4
+    'spacing',
+]
 export interface TeethItem { 
     v: number, // value 牙位
     s: number, // 状态 0默认，1选中的，2禁用
-    t: number, // 类别 0默认，1缺失，2不可移动，3不可附加，4拔除，5预留间隙
+    t: Array<number>, // 类别 0默认，1缺失，2不可移动，3不可附加，4拔除，5预留间隙
 }
 export interface State {
     teeth: Array<TeethItem>;
 }
 const state: State = {
     // 默认数据
-    teeth: toothList.map((e) => ({v: e, s: 0, t: 0})), // 牙齿数据
+    teeth: toothList.map((e) => ({v: e, s: 0, t: [0]})), // 牙齿数据    
     // 测试数据
 }
 

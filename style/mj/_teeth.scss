@@ -46,7 +46,7 @@ $tooth-offset: 6px;
     background-repeat: no-repeat;
     width: $tooth-size;
     height: $tooth-size;    
-    transform: scale(0.6);
+    transform: scale(0.6);    
 }
 .tooth-rt {
     position: absolute;
@@ -68,10 +68,10 @@ $tooth-offset: 6px;
 }
 .tooth-common {
     width: $tooth-size;
-    height: $tooth-size;
-    border-radius: $br-size;
+    height: $tooth-size;    
+    border-radius: $br-size;    
     &.white {
-        border: 1px solid #4d4d4d;
+        border: 1px solid lightgray;
     }
     &.black {
         background-color: #4d4d4d;
@@ -420,6 +420,9 @@ $tooth-offset: 6px;
 }
 .mq-teeth {
     position: relative;
+    &.spacing {
+        margin: 20px 0;
+    }
     .tooth {
         position: relative;
         @extend .tooth-common;
