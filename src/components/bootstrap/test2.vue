@@ -1,5 +1,10 @@
 <template>
-    <div>page one test2</div>
+    <div>
+        <div style="width: 300px">
+            <img src="/images/animate.svg" />
+            <img src="/images/spheres.svg" />
+        </div>
+    </div>
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue'

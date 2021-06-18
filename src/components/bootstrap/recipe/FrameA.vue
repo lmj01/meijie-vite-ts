@@ -21,7 +21,7 @@
                 </div>
             </div>            
             <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">带icon的</label>
+                <label for="btnGroupAddon" class="col-sm-2 col-form-label">带icon的</label>
                 <div class="col-sm-10">
                     <div class="input-group">
                         <div class="input-group-text" id="btnGroupAddon">@</div>
@@ -31,14 +31,14 @@
                 </div>
             </div>        
             <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">姓名</label>
+                <label for="" class="col-sm-2 col-form-label">性别</label>
                 <div class="col-sm-10">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="sex" type="radio" id="inlineCheckbox1" value="option1">
+                        <input class="form-check-input" v-model="ud.sex" name="sex" type="radio" id="inlineCheckbox1" value="1" @change="sexUpdate">
                         <label class="form-check-label" for="inlineCheckbox1">男</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="sex" type="radio" id="inlineCheckbox2" value="option2">
+                        <input class="form-check-input" v-model="ud.sex" name="sex" type="radio" id="inlineCheckbox2" value="2" @change="sexUpdate">
                         <label class="form-check-label" for="inlineCheckbox2">女</label>
                     </div>
                 </div>
@@ -55,9 +55,9 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <label for="inputPassword2" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword">
+                    <input type="password" class="form-control" id="inputPassword2">
                 </div>
             </div>
         </form>
@@ -113,8 +113,20 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, reactive } from 'vue'
 export default defineComponent({
     name: 'Recipe.Frame.A',
+    setup() {
+        const ud = reactive({
+            sex: '1',
+        })
+        const sexUpdate = () => {
+            console.log('sex update', ud.sex)
+        }
+        return {
+            ud,
+            sexUpdate,
+        }
+    },
 })
 </script>

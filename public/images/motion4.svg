@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="4cm" height="4cm"  viewBox="0 0 400 400"
+     xmlns="http://www.w3.org/2000/svg">
+     <style>
+          svg {
+               background-color: rgba(255,255,255,0.1)
+          }
+     </style>
+  <g>
+    <!-- The following illustrates the use of the 'set', 'animateMotion',
+         'animate' and 'animateTransform' elements. The 'text' element
+         below starts off hidden (i.e., invisible). At 3 seconds, it:
+           * becomes visible
+           * continuously moves diagonally across the viewport
+           * changes color from blue to dark red
+           * rotates from -30 to zero degrees
+           * scales by a factor of three. -->
+    <circle cx="175" cy="175" r="25">
+      <animateMotion path="M 375 175 L 175 25" repeatCount="indefinite"
+           begin="3s" dur="6s" fill="freeze" />
+      <!-- <animate attributeName="fill" repeatCount="indefinite"
+           from="rgb(0,0,255)" to="rgb(128,0,0)"
+           begin="3s" dur="6s" fill="freeze" /> -->
+      <!-- <animateTransform attributeName="transform" repeatCount="indefinite"
+           type="rotate" from="-30" to="0"
+           begin="3s" dur="6s" fill="freeze" /> -->
+      <!-- <animateTransform attributeName="transform" repeatCount="indefinite"
+           type="scale" from="1" to="3" additive="sum"
+           begin="3s" dur="6s" fill="freeze" /> -->
+    </circle>
+  </g>
+</svg>

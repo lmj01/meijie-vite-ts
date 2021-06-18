@@ -21,6 +21,16 @@
                         <li><a class="dropdown-item" href="/page1/">Something else here</a></li>
                     </ul>
                 </div>
+                <div class="dropdown">
+                    <div class="text-center btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="rounded" src="/images/avater.png" alt="..." >
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/page1/">Action</a></li>
+                        <li><a class="dropdown-item" href="/page1/">Another action</a></li>
+                        <li><a class="dropdown-item" href="/page1/">Something else here</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <button type="class" class="btn btn-primary" @click="updateRandomTotal">更新随机页数</button>

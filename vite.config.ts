@@ -2,6 +2,8 @@ const {resolve} = require('path')
 import { defineConfig, UserConfig } from 'vite'
 import { RollupOptions } from 'rollup';
 import vue from '@vitejs/plugin-vue'
+import html from 'vite-plugin-html'
+
 const rootPath: string = process.cwd() || '';
 // https://vitejs.dev/config/
 const currentRollupOption : RollupOptions = {
@@ -40,7 +42,28 @@ const currentConfig: UserConfig = {
       }
     }
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    html({
+      inject: {
+        injectData: {
+          title: 'vite Mj',
+          iconPath1: '/favicon1.ico',
+          iconPath2: '/favicon3.png',
+        }
+      },
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true,
+        removeAttributeQuotes: false,
+        removeComments: true,
+        removeEmptyAttributes: true,
+      },
+    })
+  ],
   build: {
     // generate manifest.json in outDir
     manifest: true,

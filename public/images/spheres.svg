@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by meijie.li  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 400 400" xml:space="preserve">
+<style type="text/css">
+    svg {
+		background-color: rgba(0,0,0,0.1)
+	}
+</style>
+<!-- <circle r="25" fill="#0051a2" >
+	<animateMotion begin="0s" dur="3s" path="M 25 175 L 175 175 L 375 175 L 175 175 z" repeatCount="indefinite"></animateMotion>
+	<animateTransform attributeName="transform" repeatCount="indefinite" type="scale" from="1" to="1.5" begin="0s" dur="3s" fill="freeze" />
+	<animateTransform attributeName="transform" repeatCount="indefinite" type="rotate" from="-60" to="0" begin="0s" dur="3s" fill="freeze" />
+</circle> -->
+<!-- <circle r="25" fill="#019fe8">
+	<animateMotion begin="0s" dur="3s" path="M 375, 175 L 175 175 L 25 175 L 175 175 z" repeatCount="indefinite"></animateMotion>
+	<animateTransform attributeName="transform" repeatCount="indefinite" type="scale" from="1 1" to="1.5 0.5" begin="0s" dur="3s" fill="freeze" />
+	<animateTransform attributeName="transform" repeatCount="indefinite" type="rotate" from="-30 0 0 " to="0 0 0 " begin="0s" dur="3s" fill="freeze" />
+</circle> -->
+<circle r="25" fill="#019fe8">
+	<animateMotion begin="0s" dur="3s" path="M 375, 175 L 175 175 L 25 175 L 175 175 z" repeatCount="indefinite"></animateMotion>
+	<animateTransform attributeName="transform" repeatCount="indefinite" type="scale" from="1 1" to="1.5 0.5" begin="0s" dur="3s" fill="freeze" />
+</circle>
+</svg>

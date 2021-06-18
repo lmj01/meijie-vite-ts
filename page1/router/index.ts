@@ -38,6 +38,11 @@ let routes = [
                     },
                 ],
             },
+            {
+                path: 'mobile',
+                name: 'page1.mobile',
+                component: () => import('@/components/bootstrap/mobile.vue'),
+            },
         ],
     },
 ];

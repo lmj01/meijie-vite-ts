@@ -1,4 +1,5 @@
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
+// import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls'
+import { TrackballControls } from './TrackballControls'
 import { 
     Group,
     Object3D,
