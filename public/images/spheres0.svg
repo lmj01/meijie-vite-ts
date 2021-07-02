@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
+<style type="text/css">
+	svg {
+		background-color: rgba(0,0,0,0.1)
+	}
+	#mjc1 {
+		animation-name: animate1;
+		animation-duration: 1.2s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: reverse;
+	}
+	#mjc2 {
+		animation-name: animate2;
+		animation-duration: 1.2s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: reverse;
+	}
+	@keyframes animate1 {
+		0% {
+			<!-- transform: scale(0.5) translateX(0%); -->
+			margin-left: 0;
+			transform: scale(0.5, 0.5);
+		},
+		50% {
+			<!-- transform: scale(1.5) translateX(50%); -->
+			margin-left: 50%;
+			transform: scale(1.5, 1.5);
+		},
+		100% {
+			<!-- transform: scale(1) translateX(100%); -->
+			margin-left: 100%;
+			transform: scale(1, 1);
+		}
+	}	
+	@keyframes animate2 {
+		0% {
+			transform: scale(0.5) translateX(0);
+		},
+		50% {
+			transform: scale(1.5) translateX(200);
+		},
+		100% {
+			transform: scale(1) translateX(400);
+		}
+	}
+</style>
+<circle id="mjc1" cx="25" cy="175" r="25" fill="#0051a2" ></circle>
+<circle id="mjc2" cx="375" cy="175" r="25" fill="#019fe8" ></circle>
+</svg>

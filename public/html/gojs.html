@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF8">
+    <title>GoJS Graph demo</title>
+    <style>
+        #myDiagramDiv {
+            width: 600px; 
+            height: 500px; 
+            background-color: #DAE4E4;
+        }
+    </style>
+    <!-- <script src="https://unpkg.com/gojs/release/go-debug.js"></script> -->
+    <!-- <script src="https://unpkg.com/gojs/release/go.js"></script> -->
+    <script src="/libs/gojs/2.1.43/go.js"></script>
+</head>
+<body>    
+    <div id="myDiagramDiv"></div>
+<script>
+
+</script>
+    <script type="text/javascript">
+        var goMake = go.GraphObject.make;
+        var myDiagram = goMake(go.Diagram, "myDiagramDiv", {
+          "undoManager.isEnabled": true,
+          layout: goMake(go.TreeLayout, { angle: 90, layerSpacing: 35 })
+        });
+        function addNewNode(e, obj) {
+            var node = obj.part.adornedPart;  // the Node with the context menu
+            var buttontext = obj.elt(1);  // the TextBlock
+            alert(buttontext.text + " command on " + node.data.key);
+        }
+        myDiagram.nodeTemplate = goMake(go.Node, 
+            "Horizontal", 
+            { 
+                background: "#44CCFF" 
+            }, 
+            // goMake(go.Picture, 
+            //     { 
+            //         margin: 10, width: 50, height: 50, background: "red" 
+            //     },
+            //     new go.Binding("source")
+            // ),
+            goMake(go.TextBlock, 
+                "Default Text", 
+                { 
+                    margin: 12, stroke: "white", font: "bold 16px sans-serif" 
+                },
+                new go.Binding("text", "name"),
+                {
+                    contextMenu: goMake("ContextMenu", 
+                        goMake("ContextMenuButton",
+                            {
+                                "ButtonBorder.fill": "white",
+                                "_buttonFillOver": "skyblue"
+                            },
+                            goMake(go.TextBlock, "New Node"),
+                            {
+                                click: addNewNode
+                            }
+                        )
+                    )
+                }
+            )
+        );
+        // define a Link template that routes orthogonally, with no arrowhead
+        myDiagram.linkTemplate = goMake(go.Link, { 
+            routing: go.Link.Orthogonal, corner: 5 
+        },
+        goMake(go.Shape, // the link's path shape
+            { strokeWidth: 3, stroke: "#555" })
+        );
+
+        // it's best to declare all templates before assigning the model
+        myDiagram.model = new go.TreeModel([
+            { key: "1",              name: "Don Meow",   source: "cat1.png" },
+            { key: "2", parent: "1", name: "Demeter",    source: "cat2.png" },
+            { key: "3", parent: "1", name: "Copricat",   source: "cat3.png" },
+            { key: "4", parent: "3", name: "Jellylorum", source: "cat4.png" },
+            { key: "5", parent: "3", name: "Alonzo",     source: "cat5.png" },
+            { key: "6", parent: "2", name: "Munkustrap", source: "cat6.png" }
+        ]);
+    </script>
+</body>
+</html>

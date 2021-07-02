@@ -82,3 +82,95 @@ $table-border-color: lightgray;
     }
   }
 }
+
+.graph-organization {
+  $item-height: 100px;
+  $item-width: 100px;
+  // $item-unit: $item-width + 20px;
+  $item-unit: 200px;
+  --item-unit-width: 200px;
+  --item-all-width: 500px;
+  $bone-color: lightblue;
+
+  position: relative;
+  width: var(--item-all-width);
+  height: 500px;
+  overflow: auto;  
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  .children {
+    position: absolute;
+    width: var(--item-unit-width);
+    left: 100px;
+    &.root {
+      position: relative;
+      margin: auto;
+      left: unset;
+    }
+  }
+
+  .graph-item-wrapper {
+   .graph-item {
+      width: calc(#{$item-width} - 20px);
+      height: $item-height;
+      text-align: center;
+      border: 1px solid;
+      margin: auto;
+      &.role0 {
+        background-color: lightblue;
+      }
+      &.role1 {
+        background-color: lightgoldenrodyellow;
+      }
+      &.role2 {
+        background-color: lightsalmon;
+      }
+      &.role3 {
+        background-color: lightgreen;
+      }
+      p {
+        font-size: 0.5rem;
+        text-indent: 1rem;
+        text-overflow: ellipsis;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+  .bone-upper {
+    width: var(--item-unit-width);
+    position: relative;
+    margin: auto;
+    &>div {
+      &:nth-child(1) {
+        height: 20px;
+        width: 3px;
+        margin: auto;
+        background-color: $bone-color;
+      }
+      &:nth-child(2) {
+        position: absolute;
+        height: 3px;
+        background-color: $bone-color;
+      }
+    }
+  }
+  .bone-lower {
+    width: var(--item-unit-width);
+    margin: auto;
+    &>div {
+      &:nth-child(1) {
+        height: 20px;
+        width: 3px;
+        left: 0;
+        margin: auto;
+        background-color: $bone-color;
+      }
+    }
+  }
+  .docked-item {
+    display: flex;
+  }
+}

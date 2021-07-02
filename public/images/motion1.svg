@@ -25,4 +25,8 @@
             <animateTransform  attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" />
       </circle>
   </g>
+<circle r="25" fill="#019fe8">
+      <!-- <animateMotion begin="0s" dur="3s" path="M 375, 175 L 175 175 L 25 175 L 175 175 z" repeatCount="indefinite"></animateMotion> -->
+      <animateTransform  attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" />
+</circle>
 </svg>

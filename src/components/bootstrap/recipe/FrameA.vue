@@ -1,7 +1,7 @@
 <template>
     <div class="frame-a">
         <p>Frame A</p>
-        <form class="frame-a-form">
+        <form class="frame-a-form needs-validation">
             <div class="mb-3 row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
@@ -60,13 +60,21 @@
                     <input type="password" class="form-control" id="inputPassword2">
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
         <p>another form</p>
-        <form>
+        <form class="needs-validation" autocomplete="off">
             <div class="row mb-3">
                 <label for="inputEmail3" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                 <div class="col-sm-10">
-                <input type="email" class="form-control form-control-sm" id="inputEmail3">
+                <input type="email" class="form-control form-control-sm" id="inputEmail3" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label col-form-label-sm">tel</label>
+                <div class="col-sm-10">
+                    <input type="tel" pattern="1[0-9]{10}" class="form-control form-control-sm" id="inputEmail3" required aria-describedby="phoneHelp">
+                    <div id="phoneHelp" class="form-text">格式为1xxxxxxxxxx,11位的手机号</div>
                 </div>
             </div>
             <div class="row mb-3">
@@ -113,7 +121,7 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, reactive } from 'vue'
+import { ref, defineComponent, reactive, onMounted } from 'vue'
 export default defineComponent({
     name: 'Recipe.Frame.A',
     setup() {
@@ -123,6 +131,19 @@ export default defineComponent({
         const sexUpdate = () => {
             console.log('sex update', ud.sex)
         }
+        onMounted(() => {
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })
         return {
             ud,
             sexUpdate,
