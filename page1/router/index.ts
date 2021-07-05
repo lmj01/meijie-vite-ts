@@ -17,6 +17,11 @@ let routes = [
                 component: () => import('@/components/bootstrap/test2.vue'),
             },
             {
+                path: 'test3',
+                name: 'page1.test3',
+                component: () => import('@/components/bootstrap/test3.vue'),
+            },
+            {
                 path: 'recipe',
                 name: 'page1.recipe',
                 component: () => import('@/components/bootstrap/Recipe.vue'),

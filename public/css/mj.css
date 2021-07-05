@@ -8145,6 +8145,14 @@ body #app {
   display: flex;
 }
 
+#idSvgGraph {
+  background-color: lightblue;
+}
+
+#idSvgGraph .graph-item-wrapper {
+  background-color: lightcoral;
+}
+
 .page-recipe {
   width: 100%;
   height: 100%;

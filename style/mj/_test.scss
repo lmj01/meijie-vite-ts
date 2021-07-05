@@ -174,3 +174,10 @@ $table-border-color: lightgray;
     display: flex;
   }
 }
+
+#idSvgGraph {
+  background-color: lightblue;
+  .graph-item-wrapper {
+    background-color: lightcoral;
+  }
+}
