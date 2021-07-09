@@ -8146,11 +8146,48 @@ body #app {
 }
 
 #idSvgGraph {
+  border: 1px solid gray;
   background-color: lightblue;
 }
 
 #idSvgGraph .graph-item-wrapper {
   background-color: lightcoral;
+}
+
+#idSvgContainer {
+  width: 100%;
+}
+
+#idSvgContainer svg {
+  border: 1px solid lightcoral;
+}
+
+#idSvgContainer .node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+#idSvgContainer .node text {
+  font: 16px sans-serif;
+}
+
+#idSvgContainer .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+#idSvgContainer .body-box {
+  stroke: #00A2A3;
+  stroke-width: 2.5px;
+}
+
+#idSvgContainer .title-box {
+  stroke: steelblue;
+  fill: #4682B4;
+  rx: 10;
+  ry: 10;
 }
 
 .page-recipe {

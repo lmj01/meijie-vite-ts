@@ -132,6 +132,12 @@ export const routerMap = [
                 component: ()=>import('@/components/html5/Event.vue'),
                 meta: { id: 304 },
             },
+            {
+                path: 'floating',
+                name: 'html5-floating',
+                component: ()=>import('@/components/html5/Floating.vue'),
+                meta: { id: 305 },
+            },
         ],
     },
     {
@@ -198,6 +204,7 @@ const menuTreeData = [
             {name: '阴影', id:302, children: [] },
             {name: '基本控件', id:303, children: [] },
             {name: '标准事件', id:304, children: [] },
+            {name: '漂浮窗体', id:305, children: [] },
         ]
     },
     {

@@ -22,6 +22,11 @@ let routes = [
                 component: () => import('@/components/bootstrap/test3.vue'),
             },
             {
+                path: 'testSvg',
+                name: 'page1.test.Svg',
+                component: () => import('@/components/bootstrap/testSvg.vue'),
+            },
+            {
                 path: 'recipe',
                 name: 'page1.recipe',
                 component: () => import('@/components/bootstrap/Recipe.vue'),

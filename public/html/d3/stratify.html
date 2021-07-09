@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <title>D3 Organization chart Tree</title>
+    <style>
+
+    .node {
+    cursor: pointer;
+    }
+
+    .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+    }
+
+    .node text {
+    font: 10px sans-serif;
+    }
+
+    .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+    }
+
+    </style>
+<body>
+    <script src="/libs/svg/d3-3.5.17/d3.js"></script>
+    <script>
+        d3.csv('./data1.csv', (links) => {
+            console.log('--', links)
+            let child = links.columns[0]
+            let parent = links.columns[1]
+            stratify = d3.stratify()
+                .id(d => d[child])
+                .parentId(d => d[parent])
+            let root = stratify(links)
+            console.log(root)
+        })
+    </script>
+</body>
+</html>

@@ -13,6 +13,9 @@
             <router-link to="/page1/test3">测试3</router-link>
         </div>
         <div class="item">
+            <router-link to="/page1/testSvg">测试svg</router-link>
+        </div>
+        <div class="item">
             <router-link to="/page1/recipe">处方表</router-link>
         </div>
         <div class="item">
